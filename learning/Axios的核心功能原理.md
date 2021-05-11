@@ -17,6 +17,8 @@ Axios 是一个基于 Promise 的 HTTP 客户端，同时支持浏览器和 Node
 
 <br >
 
+<br >
+
 ## Axios 简介
 
 Axios 是一个基于 Promise 的 HTTP 客户端，拥有以下特性：
@@ -31,6 +33,8 @@ Axios 是一个基于 Promise 的 HTTP 客户端，拥有以下特性：
 在浏览器端 Axios 支持大多数主流的浏览器，比如 Chrome、Firefox、Safari 和 IE 11。此外，Axios 还拥有自己的生态
 
 <img src="https://qiniu-image.qtshe.com/F51C07A0A7A23.png" style="zoom:70%;float:left;" />
+
+<br >
 
 <br >
 
@@ -241,6 +245,8 @@ axios({
 
 <br >
 
+<br >
+
 ## HTTP 适配器的设计与实现
 
 #### 默认 HTTP 适配器
@@ -352,7 +358,7 @@ axios.get("/users").then(function (response) {
 
 <img src="https://qiniu-image.qtshe.com/FEAB86B59FD.png" style="zoom:67%;float:left;" />
 
-
+<br >
 
 <br >
 
@@ -416,7 +422,7 @@ module.exports = function xhrAdapter(config) {
 
 看完以上的代码，答案就显而易见了， Axios 内部是使用 「双重 Cookie 防御」 的方案来防御 CSRF 攻击
 
-
+<br >
 
 <br >
 
