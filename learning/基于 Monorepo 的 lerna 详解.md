@@ -1,6 +1,6 @@
-#### lerna是什么
+## lerna是什么
 
-##### 基础概念
+####基础概念
 
 > A tool for managing JavaScript projects with multiple packages. Lerna is a tool that optimizes the workflow around managing multi-package repositories with git and npm.
 
@@ -14,9 +14,9 @@
 
 关键词：多仓库管理、多包管理、自动管理包依赖
 
+<br >
 
-
-##### 背景
+#### 背景
 
 * 资源浪费
 
@@ -30,13 +30,13 @@
 
   一个项目依赖了多个 `npm` 包，当某一个子 `npm` 包代码修改升级时，都要对主干项目包进行升级修改。(这个问题感觉是最烦的，可能一个版本号就要去更新一下代码并发布)
 
+<br >
 
+<br >
 
+##lerna的核心原理
 
-
-#### lerna的核心原理
-
-##### monorepo 和 multrepo 对比
+####monorepo 和 multrepo 对比
 
 * monorepo
 
@@ -48,9 +48,9 @@
 
 <img src="https://qiniu-image.qtshe.com/B40B444F6DE0A.png" style="zoom:40%;float:left;" />
 
+<br >
 
-
-##### lerna 软链实现
+####lerna 软链实现
 
 未使用 `lerna` 之前，想要调试一个本地的 `npm` 模块包，需要使用 `npm link` 来进行调试，但是在 `lerna` 中可以直接进行模块的引入和调试，这种动态创建软链是如何实现的？
 
@@ -65,7 +65,7 @@ type <string>
 
 它会创建名为 `path` 的链接，该链接指向 `target`。`type` 参数仅在 `Windows` 上可用，在其他平台上则会被忽略。它可以被设置为 `'dir'`、 `'file'` 或 `'junction'`。如果未设置 `type` 参数，则 `Node.js` 将会自动检测 `target` 的类型并使用 `'file'` 或 `'dir'`。如果 `target` 不存在，则将会使用 `'file'`。`Windows` 上的连接点要求目标路径是绝对路径。当使用 `'junction'` 时， `target` 参数将会自动地标准化为绝对路径
 
-
+<br >
 
 基本使用
 
@@ -105,11 +105,11 @@ function createSymbolicLink(src, dest, type) {
 
 详细内容可以参考 Node fs 官网
 
+<br >
 
+<br >
 
-
-
-#### lerna 基本使用
+## lerna 基本使用
 
 `lerna` 在使用之前需要全局安装 `lerna` 工具
 
@@ -117,9 +117,9 @@ function createSymbolicLink(src, dest, type) {
 npm install lerna -g
 ```
 
+<br >
 
-
-##### 初始化一个lerna 项目
+#### 初始化一个lerna 项目
 
 `mkdir lerna-demo`，在当前目录下创建文件夹lerna-demo,然后使用命令 `lerna init`执行成功后，目录下将会生成这样的目录结构。，一个 `hello world`级别的 `lerna` 项目就完成了
 
@@ -131,9 +131,9 @@ npm install lerna -g
  - package.json(工程描述文件)
 ```
 
+<br >
 
-
-##### lerna 常用命令
+####lerna 常用命令
 
 介绍一些 `lerna` 常用的命令
 
@@ -209,19 +209,19 @@ npm install lerna -g
 
   `lerna publish` 永远不会发布标记为 `private` 的包（`package.json中的”private“: true`）
 
+<br >
 
+<br >
 
-
-
-#### lerna 应用(适用场景)
+##lerna 应用(适用场景)
 
 lerna 比较适合的场景：基础框架、基础工具类、`ui-component` 中会存在 `h5` 组件库、`web` 组件库、`mobile` 组件库、以及对应的 `doc` 项目、三个项目通用的 `common` 代码。为了方便多个项目的联调，以及分别打包，这里采用了`lerna` 的管理方式
 
 接下来操作使用 `leran` 搭建 `ui-component` 基础组件库的过程
 
+<br >
 
-
-##### 项目初始化
+####项目初始化
 
 创建一个文件夹 `ui-component` 
 
@@ -248,9 +248,9 @@ lerna 比较适合的场景：基础框架、基础工具类、`ui-component` �
 
 `package.json` 中有一点需要注意，他的 `private` 必须设置为 `true` ，因为 `mono-repo` 本身的这个 `Git`仓库并不是一个项目，他是多个项目，所以一般不进行直接发布，发布的应该是 `packages/` 下面的各个子项目
 
+<br >
 
-
-##### 子项目创建
+####子项目创建
 
 现在 `package` 目录下是空的，我们需要创建一下组件库内部相关内容。使用 `leran create` 命令创建子 `package` 项目
 
@@ -360,17 +360,17 @@ module.exports = config;
 
 创建完两个项目后， `ui-web` 和 `example-web` 中同时出现 `node_modules`,二者会有很多重复部分，并且会占用大量的硬盘空间
 
+<br >
 
-
-##### lerna bootstrap
+####lerna bootstrap
 
 `lerna` 提供了可以将子项目的依赖包提升到最顶层的方式 ，我们可以执行 `lerna clean`先删除每个子项目的 `node_modules` , 然后执行命令  `lerna bootstrop --hoist`
 
 `lerna bootstrop --hoist` 会将 `packages` 目录下的公共模块包抽离到最顶层，但是这种方式会有一个问题，不同版本号只会保留使用最多的版本，这种配置不太好，当项目中有些功能需要依赖老版本时，就会出现问题
 
+<br >
 
-
-##### yarn workspaces
+####yarn workspaces
 
 有没有更优雅的方式？再介绍一个命令 `yarn workspaces` ，可以解决前面说的当不同的项目依赖不同的版本号问题， `yarn workspaces`会检查每个子项目里面依赖及其版本，如果版本不一致都会保留到自己的 `node_modules` 中，只有依赖版本号一致的时候才会提升到顶层。注意：这种需要在 `lerna.json` 中增加配置
 
@@ -392,9 +392,9 @@ module.exports = config;
 
 增加了这个配置后 不再需要 `lerna bootstrap` 来安装依赖了，可以直接使用 `yarn install` 进行依赖的安装。注意：`yarn install` 无论在顶层运行还是在任意一个子项目运行效果都是可以
 
+<br >
 
-
-##### 启动子项目
+####启动子项目
 
 配置完成后，我们启动 `packages` 目录下的子项目 `example-web`,原有情况下我们可能需要频繁切换到 `example-web` 文件夹，在这个目录执行 `yarn start`。
 
@@ -416,11 +416,11 @@ module.exports = config;
 }
 ```
 
+<br >
 
+<br >
 
-
-
-#### example-web 模块中 引用 ui-common 中的函数
+## example-web 模块中 引用 ui-common 中的函数
 
 在 `ui-common`中定义一个网络请求公共函数，在 `ui-web` 和 `example-web` 项目中都会用到。在项目 `example-web` 中增加 `ui-common` 模块依赖，执行命令
 
@@ -470,13 +470,11 @@ class CommentList extends React.Component<IProps, IState> {
 export default CommentList;
 ```
 
+<br >
 
+<br >
 
-
-
-
-
-#### 发布
+## 发布
 
 项目结构已基本搭建完成，尝试发布一下 ，使用命令
 
@@ -501,8 +499,8 @@ lerna publish
 
 如果想要发布的模块统一，使用相同的版本号，需要修改`lerna.json` ,将 `"version": "independent"`, 改为固定版本号,修改后尝试重新使用 `lerna publish`进行发布
 
+<br >
 
-
-##### lerna 弊端
+#### lerna 弊端
 
 和传统的 `git submodules` 多仓库方式对比， `lerna` 优势很明显的，略微不足的是： 由于源码在一起，仓库变更非常常见，存储空间也变得很大，甚至几`G`，`CI` 测试运行时间也会变长，虽然如此也是可以接受的

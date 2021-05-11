@@ -1,4 +1,4 @@
-#### 前言
+##前言
 
 作为开发人员常用的一些命令工具，这里只列举命令，至于介绍和安装等请问度娘
 
@@ -6,11 +6,11 @@
 * eslint常规配置
 * nvm node版本管理工具
 
+<br >
 
+<br >
 
-
-
-#### nrm一键切换npm源
+## nrm一键切换npm源
 
 ```python
 # 查看npm源地址，在终端输入以下命令
@@ -57,11 +57,11 @@ npm ---- 1547ms
 nrm del qihoo
 ```
 
+<br >
 
+<br >
 
-
-
-#### eslint常规配置
+## eslint常规配置
 
 eslint检查代码风格是好的，不过有些非必要的也挺烦人的，基此，我们可以在package.json文件中找到（或者在.eslintrc.js中找到rules）进行配置，例如：
 
@@ -91,7 +91,9 @@ eslint检查代码风格是好的，不过有些非必要的也挺烦人的，�
 * “warn” or 1 - 将规则视为一个警告（并不会导致检查不通过） 
 * “error” or 2 - 将规则视为一个错误 (退出码为1，检查不通过) 
 
-##### 常用规则
+<br >
+
+#### 常用规则
 
 ```javascript
 类别                   描述
@@ -252,9 +254,11 @@ space-unary-ops          强制在一元操作符前后使用一致的空格
 spaced-comment           强制在注释中 // 或 /* 使用一致的空格
 ```
 
+<br >
 
+<br >
 
-#### nvm node版本管理工具
+## nvm node版本管理工具
 
 ```python
 # 安装指定版本
@@ -284,4 +288,3 @@ nvm unalias 'xxx'
 # 在当前版本node环境下，重新全局安装指定版本号的npm包
 nvm reinstall-packages v6.5.0
 ```
-

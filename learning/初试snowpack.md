@@ -1,4 +1,4 @@
-#### 前言
+## 前言
 
 前几天看一篇关于 snowpack 简介的文章，便去去看了下这个包是干什么的，看了下官网，发现这个东西还是蛮有意思的，号称无需打包工具（Webpack，Parcel）便能将代码结果实时展现在浏览器中，可以先看以下的图，是不是很惊人
 
@@ -6,11 +6,11 @@
 
 随着 vue3、vite 的热度上升，与 vite 类似的 snowpack 的关注度也逐渐增加了，目前 snowpack 在 Github 上已经有了将近 1w stars，snowpack 的代码很轻量，接下来会从实现原理的角度开始了解 snowpack 的特点。同时看看，作为一个以原生 JavaScript 模块化为核心的年轻的构建工具，它是如何实现“老牌”构建工具所提供的那些特性的
 
+<br >
 
+<br >
 
-
-
-#### snowpack发展
+## snowpack发展
 
 2019 一篇名为 A Future Without Webpack 的文章开始将 snowpack 带入众人的视野， 通过它可以简单的了解到了 pika/snowpack 这个项目，不过当时还叫 pika/web
 
@@ -26,7 +26,7 @@
 
 > In 2019, you should use a bundler because you want to, not because you need to.
 
-
+<br >
 
 snowpack 的最初版核心目标就是不再打包业务代码，而是直接使用浏览器原生的 JavaScript Module 能力
 
@@ -54,11 +54,11 @@ snowpack 的最初版核心目标就是不再打包业务代码，而是直接�
 4. 性能：虽说它指出，上了 HTTP2 后，使用 JavaScript modules 性能并不会差，但毕竟没有实践过，对此还是抱有怀疑
 5. 环境变量：这虽然是一个小特性，但在我接触过的大多数项目中都会用到它，它可以帮助开发者自动测卸载线上代码中的调试工具，可以根据环境判断，自动将埋点上报到不同的服务上。确实需要一个这样好用的特性
 
+<br >
 
+<br >
 
-
-
-#### snowpack 的进化
+## snowpack 的进化
 
 2020 年上半年，随着 vue3 的不断曝光，与其有一定关联的另一个项目 vite 也逐渐吸引了人们的目光。而其介绍中提到的 snowpack 也突然吸引到了更多的热度与讨论。当时很多人可能只是对 pika 感到熟悉，好奇才会点开 snowpack 项目主页，这时snowpack 以 pika/snowpack v2 版本再次走入大众视野。而且项目源码也不再是之前那唯一而简单的 index.ts，在核心代码外，还包含了诸多官方插件
 
@@ -66,7 +66,9 @@ snowpack 的最初版核心目标就是不再打包业务代码，而是直接�
 
 <img src="https://qiniu-image.qtshe.com/1608445154045.jpg" style="zoom:67%;float:left;" />
 
-##### import CSS
+<br >
+
+#### import CSS
 
 import CSS 的问题还有一个更大的范围，就是非 JavaScript 资源的加载，包括图片、JSON 文件、文本等
 
@@ -112,9 +114,9 @@ snowpack 中的实现代码比我们上面多了一些东西，不过与样式�
 
 proxy 这个名词之后会多次出现，因为为了能够以模块化方式导入非 JS 资源，snowpack 把生成的中间 JavaScript 模块都叫做 proxy。这种实现方式也几乎和 webpack 一脉相承
 
+<br >
 
-
-##### 图片的 import
+#### 图片的 import
 
 在目前的前端开发场景中，还有一类非常典型的资源就是图片
 
@@ -229,9 +231,9 @@ return `export default ${JSON.stringify(url)};`;
 
 所以，对于 CSS 与图片，由于浏览器模块规范均不支持该类型，所以都会转换为 JS 模块，这块 snowpack 和 webpack 实现很类似
 
+<br >
 
-
-#####  HMR（热更新）
+#### HMR（热更新）
 
 <img src="https://qiniu-image.qtshe.com/21608446310286.jpg" style="zoom:60%;float:left;" />
 
@@ -304,9 +306,9 @@ const [module, ...depModules] = await Promise.all([
 
 也是秉承了使用浏览器原生 JavaScript Modules 能力的理念
 
+<br >
 
-
-##### 环境变量
+#### 环境变量
 
 通过环境来判断是否关闭调试功能是一个非常常见的需求
 
@@ -375,9 +377,9 @@ if (import.meta.env.NODE_ENV === 'production') {
 
 默认情况下 env.js 只包含 MODE 和 NODE_ENV 两个值，你可以通过 @snowpack/plugin-dotenv 插件来直接读取 .env 相关文件
 
+<br >
 
-
-##### CSS Modules 的支持
+#### CSS Modules 的支持
 
 CSS 的模块化一直是一个难题，其一个重要的目的就是做 CSS 样式的隔离。常用的解决方案包括：
 
@@ -424,9 +426,9 @@ return `
 这里我将 HMR 和样式注入的代码省去了，只保留了 CSS Module 功能的部分。可以看到，它其实是借力了 css-modules-loader-core 来实现的 CSS Module 中 token 生成这一核心能力
 对于导出的默认对象，键为 CSS 源码中的 classname，而值则是构建后实际的 classname
 
+<br >
 
-
-##### 性能问题
+#### 性能问题
 
 雅虎性能优化 35 条军规，其中就提到了通过合并文件来减少请求数。这既是因为 TCP 的慢启动特点，也是因为浏览器的并发限制。而伴随这前端富应用需求的增多，前端页面再也不是手工引入几个 script 脚本就可以了。同时，浏览器中 JS 原生的模块化能力缺失也让算是火上浇油，到后来再加上 npm 的加持，打包工具呼之欲出。webpack 也是那个时代走过来的产物
 
@@ -436,11 +438,11 @@ return `
 
 同时，由于业务技术形态的原因，我所在的业务线经历了一次构建工具迁移，对于模块的处理上也用了类似的策略：业务代码模块不合并，只打包 node_modules 中的模块，都走 HTTP/2。但是没有使用原生模块功能，只是模块的分布状态与 snowpack 和该文中提到的类似。从上线后的性能数据来看，性能并未下降。当然，由于并非使用原生模块功能来加载依赖，所以并不全完相同。但也算有些参考价值
 
+<br >
 
+<br >
 
-
-
-#### 总结
+## 总结
 
 snowpack 的一大特点是快 —— 全量构建快，增量构建也快。因为不需要打包，所以它不需要像 webpack 那样构筑一个巨大的依赖图谱，并根据依赖关系进行各种合并、拆分计算。snowpack 的增量构建基本就是改动一个文件就处理这个文件即可，模块之间算是“松散”的耦合
 
