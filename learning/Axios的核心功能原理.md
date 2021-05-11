@@ -15,7 +15,7 @@ Axios 是一个基于 Promise 的 HTTP 客户端，同时支持浏览器和 Node
 * 如何防御 CSRF 攻击
 * 如何实现请求重试
 
-
+<br >
 
 ## Axios 简介
 
@@ -32,7 +32,7 @@ Axios 是一个基于 Promise 的 HTTP 客户端，拥有以下特性：
 
 <img src="https://qiniu-image.qtshe.com/F51C07A0A7A23.png" style="zoom:70%;float:left;" />
 
-
+<br >
 
 ## HTTP 拦截器的设计与实现
 
@@ -78,7 +78,7 @@ axios.interceptors.response.use(function (data) {
 
 了解完这些，接下来我们将从 「任务注册、任务编排和任务调度」 三个方面来分析 Axios 拦截器的实现
 
-
+<br >
 
 #### 任务注册
 
@@ -136,7 +136,7 @@ InterceptorManager.prototype.use = function use(fulfilled, rejected) {
 
 <img src="https://qiniu-image.qtshe.com/0E39C2F70FE.png" style="zoom:70%;float:left;" />
 
-
+<br >
 
 #### 任务编排
 
@@ -187,7 +187,7 @@ Axios.prototype.request = function request(config) {
 
 <img src="https://qiniu-image.qtshe.com/B480123681.png" style="zoom:70%;float:left;" />
 
-
+<br >
 
 #### 任务调度
 
@@ -208,7 +208,7 @@ Axios.prototype.request = function request(config) {
 
 <img src="https://qiniu-image.qtshe.com/E641ACE11C28.png" style="zoom:67%;float:left;" />
 
-
+<br >
 
 下面回顾一下 Axios 拦截器完整的使用流程
 
@@ -239,7 +239,7 @@ axios({
 
 <img src="https://qiniu-image.qtshe.com/D7037206BF.png" style="zoom:80%;float:left;" />
 
-
+<br >
 
 ## HTTP 适配器的设计与实现
 
@@ -292,7 +292,7 @@ function getDefaultAdapter() {
 
 在 getDefaultAdapter 方法中，首先通过平台中特定的对象来区分不同的平台，然后再导入不同的适配器，具体的代码比较简单，这里就不展开介绍
 
-
+<br >
 
 #### 自定义适配器
 
@@ -354,7 +354,7 @@ axios.get("/users").then(function (response) {
 
 
 
-
+<br >
 
 ## CSRF 防御
 
@@ -370,7 +370,7 @@ axios.get("/users").then(function (response) {
 
 在上图中攻击者利用了 Web 中用户身份验证的一个漏洞：「简单的身份验证只能保证请求发自某个用户的浏览器，却不能保证请求本身是用户自愿发出的」。既然存在以上的漏洞，那么我们应该怎么进行防御呢？接下来我们来介绍一些常见的 CSRF 防御措施
 
-
+<br >
 
 #### Axios CSRF 防御
 
@@ -418,7 +418,7 @@ module.exports = function xhrAdapter(config) {
 
 
 
-
+<br >
 
 ## 请求重试
 
@@ -481,7 +481,7 @@ axios.interceptors.response.use(null, (err) => {
 
 介绍完如何使用拦截器实现请求重试的功能之后，下面来介绍适配器实现请求重试的方案
 
-
+<br >
 
 #### 适配器实现请求重试的方案
 
@@ -512,7 +512,7 @@ module.exports = function xhrAdapter(config) {
 
 很明显 xhrAdapter 适配器是一个函数对象，它接收一个 config 参数并返回一个 Promise 对象。而在 xhrAdapter 适配器内部，最终会使用 XMLHttpRequest API 来发送 HTTP 请求。为了实现请求重试的功能，我们就可以考虑通过高阶函数来增强 xhrAdapter 适配器的功能
 
-
+<br >
 
 #### 定义 retryAdapterEnhancer 函数
 
@@ -564,7 +564,7 @@ function retryAdapterEnhancer(adapter, options) {
 
 <img src="https://qiniu-image.qtshe.com/319D84116DD.png" style="zoom:67%;float:left;" />
 
-
+<br >
 
 #### 使用 retryAdapterEnhancer 函数
 
@@ -579,7 +579,7 @@ const http = axios.create({
 });
 ```
 
-
+<br >
 
 2. 使用 http 对象发送请求
 
