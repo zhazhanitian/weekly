@@ -1,4 +1,4 @@
-#### 前言
+## 前言
 
 Axios 是一个基于 Promise 的 HTTP 客户端，同时支持浏览器和 Node.js 环境。它是一个优秀的 HTTP 客户端，被广泛地应用在大量的 Web 项目中
 
@@ -17,9 +17,7 @@ Axios 是一个基于 Promise 的 HTTP 客户端，同时支持浏览器和 Node
 
 
 
-
-
-#### Axios 简介
+## Axios 简介
 
 Axios 是一个基于 Promise 的 HTTP 客户端，拥有以下特性：
 
@@ -36,11 +34,9 @@ Axios 是一个基于 Promise 的 HTTP 客户端，拥有以下特性：
 
 
 
+## HTTP 拦截器的设计与实现
 
-
-#### HTTP 拦截器的设计与实现
-
-##### 拦截器简介
+#### 拦截器简介
 
 对于大多数 SPA 应用程序来说， 通常会使用 token 进行用户的身份认证。这就要求在认证通过后，我们需要在每个请求上都携带认证信息。针对这个需求，为了避免为每个请求单独处理，我们可以通过封装统一的 request 函数来为每个请求统一添加 token 信息
 
@@ -84,7 +80,7 @@ axios.interceptors.response.use(function (data) {
 
 
 
-##### 任务注册
+#### 任务注册
 
 通过前面拦截器的使用示例，我们已经知道如何注册请求拦截器和响应拦截器，其中请求拦截器用于处理请求配置对象的子任务，而响应拦截器用于处理响应对象的子任务。要搞清楚任务是如何注册的，就需要了解 axios 和 axios.interceptors 对象
 
@@ -142,7 +138,7 @@ InterceptorManager.prototype.use = function use(fulfilled, rejected) {
 
 
 
-##### 任务编排
+#### 任务编排
 
 现在我们已经知道如何注册拦截器任务，但仅仅注册任务是不够，我们还需要对已注册的任务进行编排，这样才能确保任务的执行顺序。这里我们把完成一次完整的 HTTP 请求分为处理请求配置对象、发起 HTTP 请求和处理响应对象 3 个阶段
 
@@ -193,7 +189,7 @@ Axios.prototype.request = function request(config) {
 
 
 
-##### 任务调度
+#### 任务调度
 
 任务编排完成后，要发起 HTTP 请求，我们还需要按编排后的顺序执行任务调度。在 Axios 中具体的调度方式很简单，具体如下所示
 
@@ -245,11 +241,9 @@ axios({
 
 
 
+## HTTP 适配器的设计与实现
 
-
-#### HTTP 适配器的设计与实现
-
-##### 默认 HTTP 适配器
+#### 默认 HTTP 适配器
 
 Axios 同时支持浏览器和 Node.js 环境，对于浏览器环境来说，我们可以通过 XMLHttpRequest 或 fetch API 来发送 HTTP 请求，而对于 Node.js 环境来说，我们可以通过 Node.js 内置的 http 或 https 模块来发送 HTTP 请求
 
@@ -300,7 +294,7 @@ function getDefaultAdapter() {
 
 
 
-##### 自定义适配器
+#### 自定义适配器
 
 其实除了默认的适配器外，我们还可以自定义适配器。那么如何自定义适配器呢？这里可以参考 Axios 提供的示例
 
@@ -362,9 +356,9 @@ axios.get("/users").then(function (response) {
 
 
 
-#### CSRF 防御
+## CSRF 防御
 
-##### CSRF 简介
+#### CSRF 简介
 
 「跨站请求伪造」（Cross-site request forgery），通常缩写为 「CSRF」 或者 「XSRF」， 是一种挟制用户在当前已登录的 Web 应用程序上执行非本意的操作的攻击方法
 
@@ -378,7 +372,7 @@ axios.get("/users").then(function (response) {
 
 
 
-##### Axios CSRF 防御
+#### Axios CSRF 防御
 
 Axios 提供了 xsrfCookieName 和 xsrfHeaderName 两个属性来分别设置 CSRF 的 Cookie 名称和 HTTP 请求头的名称，它们的默认值如下所示
 
@@ -426,13 +420,13 @@ module.exports = function xhrAdapter(config) {
 
 
 
-#### 请求重试
+## 请求重试
 
 这里将介绍在 Axios 中如何通过 拦截器或适配器 来实现请求重试的功能。那么为什么要进行请求重试呢？这是因为在某些情况下，比如请求超时的时候，我们希望能自动重新发起请求进行重试操作，从而完成对应的操作
 
 
 
-##### 拦截器实现请求重试的方案
+#### 拦截器实现请求重试的方案
 
 在 Axios 中设置拦截器很简单，通过 axios.interceptors.request 和 axios.interceptors.response 对象提供的 use 方法，就可以分别设置请求拦截器和响应拦截器
 
@@ -489,7 +483,7 @@ axios.interceptors.response.use(null, (err) => {
 
 
 
-##### 适配器实现请求重试的方案
+#### 适配器实现请求重试的方案
 
 在介绍如何增强默认适配器之前，我们先来看一下 Axios 内置的 xhrAdapter 适配器，它被定义在 lib/adapters/xhr.js 文件中
 
@@ -520,7 +514,7 @@ module.exports = function xhrAdapter(config) {
 
 
 
-##### 定义 retryAdapterEnhancer 函数
+#### 定义 retryAdapterEnhancer 函数
 
 为了让用户能够更灵活地控制请求重试的功能，我们定义了一个 retryAdapterEnhancer 函数，该函数支持两个参数
 
@@ -572,7 +566,7 @@ function retryAdapterEnhancer(adapter, options) {
 
 
 
-##### 使用 retryAdapterEnhancer 函数
+#### 使用 retryAdapterEnhancer 函数
 
 1. 创建 Axios 对象并配置 adapter 选项
 
