@@ -30,7 +30,7 @@
 
 #### npm安装包
 
-<img src="https://qiniu-app.qtshe.com/1588503878876.jpg" width="500px" style="float:left;" />
+<img src="https://qiniu-app.qtshe.com/1588503878876.jpg" width="400px" style="float:left;" />
 
 【index.js】入口文件：
 
