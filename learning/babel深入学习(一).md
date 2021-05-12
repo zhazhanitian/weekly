@@ -1,4 +1,4 @@
-#### 前言
+### 前言
 
 前面在做H5埋点打点工具的时候，过程中发现每个步骤都离不开 babel 及相关生态的工具，但是一直以来都没有系统的了解过babel，借此机会系统性学习一波
 
@@ -8,11 +8,11 @@
 
 接下来计划从 `Babel` 及其相关生态的作用及具体效果入手，逐步深入学习 `Babel` 核心原理
 
+<br >
 
+<br >
 
-
-
-#### 简介
+### 简介
 
 Babel 是一个用于 JavaScript 的通用多用途编译器，使用 Babel 可以使用（或创建）下一代 的JavaScript，以及下一代 JavaScript 工具
 
@@ -40,17 +40,17 @@ const square = function square(n) {
 
 许多人也是这样去做的，Babel 的生态系统正在茁长的成长。在这本 Babel 手册中，我将讲解 Babel 内建的一些工具以及社区里的一些拥有的工具
 
+<br >
 
+<br >
 
-
-
-####  Babel 模块介绍
+### Babel 模块介绍
 
 因为 JavaScript 社区没有标准的构建工具，框架或平台等，Babel 官方性与其他所有的主要工具进行了集成。无论是来自 Gulp、Browserify，或者是 Ember、Meteor，亦或是 Webpack 等，无论你的启动工具是什么，Babel 都存在一些官方性的集成
 
+<br >
 
-
-##### babel-cli
+#### babel-cli
 
 Babel的CLI是从命令行使用Babel编译文件的简单方法，这里先进行全局安装，以学习基础知识
 
@@ -80,11 +80,11 @@ $ babel src --out-dir lib
 $ babel src -d lib
 ```
 
+<br >
 
+<br >
 
-
-
-#### 在项目中运行Babel CLI
+### 在项目中运行Babel CLI
 
 虽然可以在计算机上全局安装Babel CLI，但最好逐个项目在本地安装它
 
@@ -116,9 +116,9 @@ $ npm install --save-dev babel-cli
 npm run build
 ```
 
+<br >
 
-
-##### babel-register
+#### babel-register
 
 运行Babel的下一个最常见的方法是通过 `babel-register` 。通过此选项，仅需要文件即可运行 Babel，这可能会更好地与设置集成
 
@@ -162,9 +162,9 @@ require("babel-register")
 console.log("Hello world!")
 ```
 
+<br >
 
-
-##### babel-node
+#### babel-node
 
 如果只是通过 `node` CLI 运行某些代码，则集成 Babel 的最简单方法可能是使用 `babel-node` CLI，这在很大程度上只是对 `node` CLI 的替代
 
@@ -186,9 +186,9 @@ $ npm install --save-dev babel-cli
   }
 ```
 
+<br >
 
-
-##### babel-core
+#### babel-core
 
 如果出于某种原因需要在代码中使用 Babel，则可以使用 `babel-core` 软件包本身
 
@@ -224,19 +224,19 @@ babel.transformFromAst(ast, code, options)
 // => { code, map, ast }
 ```
 
+<br >
 
+<br >
 
-
-
-#### 配置 Babel
+### 配置 Babel
 
 上述功能仅运行 Babel 似乎除了将 JavaScript 文件从一个位置复制到另一个位置之外没有执行任何其他操作，这是因为尚未告诉 Babel 该做什么事情，由于Babel是通用编译器，它以多种不同的方式使用，因此默认情况下它不会执行任何操作
 
 可以通过安装 **plugins** 或 **presets** （plugins 组）为Babel提供操作说明
 
+<br >
 
-
-##### .babelrc
+#### .babelrc
 
 在开始告诉 Babel 怎么做之前，需要创建一个配置文件，需要做的就是在项目的根目录下创建一个 `.babelrc` 文件，从这样开始：
 
@@ -249,9 +249,9 @@ babel.transformFromAst(ast, code, options)
 
 该文件是配置 Babel 以执行所需操作的方式，虽然还可以通过其他方式将选项传递给 Babel，但 `.babelrc` 文件是约定俗成的，也是最好的方法
 
+<br >
 
-
-##### babel-preset-es2015
+#### babel-preset-es2015
 
 首先告诉 Babel 将 ES2015（JavaScript标准的最新版本，也称为ES6）编译为ES5（当今大多数JavaScript环境中可用的版本）
 
@@ -272,9 +272,9 @@ $ npm install --save-dev babel-preset-es2015
   }
 ```
 
+<br >
 
-
-##### babel-preset-stage-x
+#### babel-preset-stage-x
 
 JavaScript还提出了一些建议，这些建议正在通过TC39（ECMAScript标准背后的技术委员会）流程纳入标准
 
@@ -310,13 +310,13 @@ $ npm install --save-dev babel-preset-stage-2
   }
 ```
 
+<br >
 
+<br >
 
+### 执行 Babel 生成的代码
 
-
-#### 执行 Babel 生成的代码
-
-##### babel-polyfill
+#### babel-polyfill
 
 几乎所有未来 JavaScript 语法都可以使用 Babel 进行编译，但 API 并非如此
 
@@ -361,9 +361,9 @@ $ npm install --save babel-polyfill
 import "babel-polyfill"
 ```
 
+<br >
 
-
-##### babel-runtime
+#### babel-runtime
 
 为了实现 ECMAScript 规范的详细信息，Babel将使用 “**helper**” 方法来保持生成的代码干净
 
@@ -416,17 +416,17 @@ let Foo = function () {
 
 而不是将 `_classCallCheck` 和 `_createClass` helper 函数放在需要的每个文件中
 
+<br >
 
+<br >
 
-
-
-#### Babel 和其他工具结合
+### Babel 和其他工具结合
 
 一旦掌握了 Babel，Babel 便会很直接地进行设置，但是使用其他工具进行设置可能非常困难。接着尝试与其他项目紧密合作，以使体验尽可能轻松
 
+<br >
 
-
-##### 静态分析工具
+#### 静态分析工具
 
 较新的标准为语言带来了许多新语法，而静态分析工具才刚刚开始利用它
 
