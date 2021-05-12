@@ -1,12 +1,12 @@
-#### 前言
+## 前言
 
 前面粗略了解了一下 Vite 的基础功能及大致背景，接下来将深入探索其运行原理
 
+<br >
 
+<br >
 
-
-
-#### ES module
+## ES module
 
 要了解 vite 的运行原理，首先要知道什么是 ES module，目前流览器对其的支持如下
 
@@ -27,11 +27,11 @@
 export const bar = 'bar';
 ```
 
+<br >
 
+<br >
 
-
-
-#### 在 vite 中的作用
+## 在 vite 中的作用
 
 打开运行中的 vite 项目，访问 view-source 可以发现 html 里有段这样的代码
 
@@ -49,16 +49,16 @@ export const bar = 'bar';
 - 从 `http://localhost:3000/App.vue` 中获取应用入口
 - 使用 `createApp` 创建应用并挂载节点
 
-
+<br >
 
 `createApp` 是 vue3.X 的 api，只需知道这是创建了 vue 应用即可，vite 利用 ES module，把 “构建 vue 应用” 这个本来需要通过 webpack 打包后才能执行的代码直接放在浏览器里执行，这么做是为了：
 
 1. 去掉打包步骤
 2. 实现按需加载
 
+<br >
 
-
-#####去掉打包步骤
+### 去掉打包步骤
 
 打包的概念是开发者利用打包工具将应用各个模块集合在一起形成 bundle，以一定规则读取模块的代码——以便在不支持模块化的浏览器里使用
 
@@ -66,27 +66,27 @@ export const bar = 'bar';
 
 vite 利用浏览器原生支持模块化导入这一特性，省略了对模块的组装，也就不需要生成 bundle，所以打包这一步就可以省略了
 
+<br >
 
-
-##### 实现按需打包
+### 实现按需打包
 
 前面说到，webpack 之类的打包工具会将各模块提前打包进 bundle 里，但打包的过程是静态的——不管某个模块的代码是否执行到，这个模块都要打包到 bundle 里，这样的坏处就是随着项目越来越大打包后的 bundle 也越来越大
 
 开发者为了减少 bundle 大小，会使用动态引入 `import()` 的方式异步的加载模块（ 被引入模块依然需要提前打包)，又或者使用 tree shaking 等方式尽力的去掉未引用的模块，然而这些方式都不如 vite 的优雅，vite 可以只在需要某个模块的时候动态（借助 `import()` ）的引入它，而不需要提前打包，虽然只能用在开发环境，不过这就够了
 
+<br >
 
+<br >
 
-
-
-#### vite 如何处理 ESM
+## vite 如何处理 ESM
 
 既然 vite 使用 ESM 在浏览器里使用模块，那么这一步究竟是怎么做的？
 
 上文提到过，在浏览器里使用 ES module 是使用 http 请求拿到模块，所以 vite 必须提供一个 web server 去代理这些模块，上文中提到的 `koa` 就是负责这个事情，vite 通过对请求路径的劫持获取资源的内容返回给浏览器，不过 vite 对于模块导入做了特殊处理
 
+<br >
 
-
-##### @modules 是什么？
+### @modules 是什么？
 
 通过工程下的 index.html 和开发环境下的 html 源文件对比，发现 script 标签里的内容发生了改变，由
 
@@ -117,9 +117,9 @@ vite 对 import 都做了一层处理，其过程如下
 
 这部分代码在 serverPluginModuleRewrite 这个 plugin 中
 
+<br >
 
-
-##### 为什么需要 @modules？
+### 为什么需要 @modules？
 
 如果我们在模块里写下以下代码的时候，浏览器中的 esm 是不可能获取到导入的模块内容的
 
@@ -134,15 +134,15 @@ import vue from 'vue'
 - 遍历 AST 拿到 import 语句中的包的名称
 - 使用 enhanced-resolve 拿到包的实际地址进行打包
 
-
+<br >
 
 但是浏览器中 ESM 无法直接访问项目下的 node_modules，所以 vite 对所有 import 都做了处理，用带有 **@modules** 的前缀重写它们
 
 从另外一个角度来看这是非常比较巧妙的做法，把文件路径的 rewrite 都写在同一个 plugin 里，这样后续如果加入更多逻辑，改动起来不会影响其他 plugin，其他 plugin 拿到资源路径都是 **@modules** ，比如说后续可能加入 alias 的配置：就像 webpack alias 一样：可以将项目里的本地文件配置成绝对路径的引用
 
+<br >
 
-
-##### 怎么返回模块内容
+### 怎么返回模块内容
 
 在下一个 koa middleware 中，用正则匹配到路径上带有 **@modules** 的资源，再通过 `require('xxx')` 拿到 包的导出返回给浏览器
 
@@ -153,7 +153,7 @@ import vue from 'vue'
 - dynamic import 导入 esm
 - dynamic import 导入 cjs
 
-
+<br >
 
 关于 es module 的坑可以看这篇文章(https://zhuanlan.zhihu.com/p/40733281)
 
@@ -163,7 +163,7 @@ import vue from 'vue'
 
 <img src="https://qiniu-image.qtshe.com/219A5AEEW23DD911AB.png" style="zoom:70%;float:left;" />
 
-
+<br >
 
 不过 vite 在最近的更新中，加入了 `optimize` 命令，这个命令专门为解决模块引用的坑而开发，例如我们要在 vite 中使用 lodash，只需要在 **vite.config.js** （vite 配置文件）中，配置 `optimizeDeps` 对象，在 `include` 数组中添加 lodash
 
@@ -196,17 +196,17 @@ lodash.pick()
 
 返回模块的内容的代码在：serverPluginModuleResolve.ts 这个 plugin 中
 
+<br >
 
+<br >
 
-
-
-#### vite 如何编译模块
+## vite 如何编译模块
 
 最初 vite 为 vue3.x 开发，所以这里的编译指的是编译 vue 单文件组件，其他 es 模块可以直接导入内容
 
+<br >
 
-
-##### SFC
+### SFC
 
 vue 单文件组件（简称 SFC） 是 vue 的一个亮点，前端届对 SFC 褒贬不一，个人看来，SFC 是利大于弊的，虽然 SFC 带来了额外的开发工作量，比如为了解析 template 要写模板解析器，还要在 SFC 中解析出逻辑和样式，在 vscode 里要写 vscode 插件，在 webpack 里要写 vue-loader，但是对于使用方来说可以在一个文件里可以同时写 template、js、style，省了各文件互相跳转
 
@@ -249,7 +249,7 @@ function vuePlugin({app}){
 }
 ```
 
-
+<br >
 
 在 compileSFCMain 中是一段长长的 generate 代码
 
@@ -287,7 +287,7 @@ function compileSFCMain(descriptor, filePath: string, publicPath: string) {
 }
 ```
 
-
+<br >
 
 直接看 generate 后的代码
 
@@ -302,7 +302,7 @@ __script.__file = "/Users/muou/work/playground/vite-app/App.vue"
 export default __script
 ```
 
-
+<br >
 
 出现了 `vite/hmr` 的导入，`vite/hmr` 具体内容我们下文再分析，从这段代码中可以看到，对于 style vite 使用 `updateStyle` 这个方法处理，`updateStyle` 内容非常简单，这里就不贴代码了，就做了 1 件事：通过创建 style 元素，设置了它的 innerHtml 为 css 内容
 
@@ -310,9 +310,9 @@ export default __script
 
 这部分代码在：serverPluginVue 这个 plugin 里
 
+<br >
 
-
-##### css
+### css
 
 如果在 vite 项目里引入一个 sass 文件会怎么样？
 
@@ -320,11 +320,11 @@ export default __script
 
 在 cssPlugin 中，通过正则：`/(.+).(less|sass|scss|styl|stylus)$/` 判断路径是否需要 css 预编译，如果命中正则，就借助 cssUtils 里的方法借助 postcss 对要导入的 css 文件编译
 
+<br >
 
+<br >
 
-
-
-#### vite 热更新的实现
+## vite 热更新的实现
 
 上文中出现了 vite/hmr ，这就是 vite 处理热更新的关键，在 serverPluginHmr plugin 中，对于 `path` 等于  `vite/hmr` 做了一次判断
 
@@ -346,13 +346,13 @@ hmrClient 是 vite 热更新的客户端代码，需要在浏览器里执行，�
 
 1. client 收到新的模块内容，执行 rerender/reload
 
-
+<br >
 
 vite 也不例外同样有这四个部分，其中客户端代码在：client.ts 里，服务端代码在 serverPluginHmr 里，对于 vue 组件的更新，通过 vue3.x 中的 `HMRRuntime` 处理的
 
+<br >
 
-
-##### client 端
+### client 端
 
 在 client 端， `WebSocket` 监听了一些更新的类型，然后分别处理，它们是
 
@@ -364,9 +364,9 @@ vite 也不例外同样有这四个部分，其中客户端代码在：client.ts
 - js-update —— js 更新：直接执行
 - full-reload —— 页面 roload：使用 `window.reload` 刷新页面
 
+<br >
 
-
-##### server 端
+### server 端
 
 在 server 端，通过 watcher 监听页面改动，根据文件类型判断是 js Reload 还是 Vue Reload
 
@@ -386,7 +386,7 @@ watcher.on('change', async (file) => {
 })
 ```
 
-
+<br >
 
 在 handleVueReload 方法里，会使用解析器拿到当前文件的 template/script/style ，并且与缓存里的上一次解析的结果进行比较，如果 template 发生改变就执行 vue-rerender，如果 style 发生改变就执行 vue-style-update，简化后的逻辑如下
 
