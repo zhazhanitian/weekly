@@ -1,6 +1,6 @@
-#### 前言
+## 前言
 
-**Vite**（法语单词，“快” 的意思）是一种新型的前端构建工具
+#### Vite（法语单词，“快” 的意思）是一种新型的前端构建工具
 
 最初是配合 Vue3.0 一起使用的，后来适配了各种前端项目，目前提供了 Vue、React、Preact 框架模板
 
@@ -12,11 +12,11 @@ Vite 方式构建的项目，和使用 Webpack 构建的项目，有什么不同
 
 一个新工具的出现，一定是为了解决现有工具存在的问题的，否则新工具就没有存在的价值和意义
 
+<br >
 
+<br >
 
-
-
-#### vite
+## vite
 
 vite —— 一个由 vue 作者尤雨溪开发的 web 开发工具，它具有以下特点：
 
@@ -34,9 +34,9 @@ vite —— 一个由 vue 作者尤雨溪开发的 web 开发工具，它具有�
 
 有趣的是 vite 算是革了 webpack 的命了（生产环境用 rollup）
 
+<br >
 
-
-##### vite 的使用方式
+### vite 的使用方式
 
 [快速通道](https://vitejs.dev/guide/ )
 
@@ -61,11 +61,11 @@ $ yarn dev
 
 执行 `yarn dev` 即可启动应用
 
+<br >
 
+<br >
 
-
-
-#### Vite 解决了 Webpack 哪些问题
+## Vite 解决了 Webpack 哪些问题
 
 随着项目的复杂度升级，代码规范和管理就必须要同步提升。于是，编程社区中提出了多种模块化规范，服务端选择了 CommonJS 规范，客户端选择 AMD 规范较多，但是，两种模块化规范也都存在一定的问题，都是 JS 编程，有两个不同的模块化规范，在 JS 语言层面还是不够的，终于在 ES6 中，ECMA 委员会推出了语言层面模块系统：**ES Modules 规范**
 
@@ -79,19 +79,19 @@ $ yarn dev
 
 对于开发过程而言，模块化肯定是必要的，所以我们需要在前面所说的模块化实现的基础之上引入更好的方案或者工具，去解决上面提出的 3 个问题，让我们的应用在开发阶段继续享受模块化带来的优势，又不必担心模块化对生产环境所产生的影响
 
-
+<br >
 
 *本质上，webpack 是一个现代 JavaScript 应用程序的静态模块打包器（module bundler）*
 
 <img src="https://qiniu-image.qtshe.com/5Fsdsd179FE8104D.png" style="zoom:60%;float:left;" />
 
-
+<br >
 
 Vue 脚手架工具 vue-cli 使用 webpack 进行打包，开发时可以启动本地开发服务器，实时预览。因为需要对整个项目文件进行打包，开发服务器启动缓慢
 
 <img src="https://qiniu-image.qtshe.com/5F12312e179FE8104D.png" style="zoom:60%;float:left;" />
 
-
+<br >
 
 而对于开发时文件修改后的热更新 HMR 也存在同样的问题
 
@@ -101,17 +101,17 @@ Vite 则很好地解决了上面的两个问题
 
 <img src="https://qiniu-image.qtshe.com/123123RR179FE8104D.png" style="zoom:60%;float:left;" />
 
+<br >
 
-
-##### 打包问题
+### 打包问题
 
 vite 只启动一台静态页面的服务器，对文件代码不打包，服务器会根据客户端的请求加载不同的模块处理，实现真正的按需加载
 
 <img src="https://qiniu-image.qtshe.com/QWEQWE123FE8104D.png" style="zoom:60%;float:left;" />
 
+<br >
 
-
-##### 热更新问题
+### 热更新问题
 
 vite 采用立即编译当前修改文件的办法。同时 vite 还会使用缓存机制( http 缓存 => vite 内置缓存 )，加载更新后的文件内容
 
@@ -122,13 +122,13 @@ vite 采用立即编译当前修改文件的办法。同时 vite 还会使用缓
 * Vite 在开发模式下不需要打包可以直接运行，使用的是 ES6 的模块化加载规则；Vue-CLI 开发模式下必须对项目打包才可以运行
 * Vite 基于缓存的热更新，Vue-CLI 基于 Webpack 的热更新
 
+<br >
 
+<br >
 
+## vite 启动链路
 
-
-#### vite 启动链路
-
-#####命令解析
+### 命令解析
 
 这部分代码在 src/node/cli.ts 里，主要内容是借助 minimist —— 一个轻量级的命令解析工具解析 npm scripts，解析的函数是 `resolveOptions` ，精简后的代码片段如下
 
@@ -156,9 +156,9 @@ if (!options.command || options.command === 'serve') {
 
 在 `runServe` 方法中，执行 server 模块的创建开发服务器方法，同样在 `runBuild` 中执行 build 模块的构建方法
 
+<br >
 
-
-##### server
+### server
 
 这部分代码在 src/node/server/index.ts 里，主要暴露一个 `createServer` 方法
 
@@ -170,9 +170,9 @@ context 组成如下
 
 plugin 依次从 context 里获取上面这些组成部分，有的 plugin 在 koa 实例添加了几个 middleware，有的借助 watcher 实现对文件的改动监听，这种插件机制带来的好处是整个应用结构清晰，同时每个插件处理不同的事情，职责更分明
 
+<br >
 
-
-##### plugin
+### plugin
 
 plugin大致分类如下
 
@@ -214,13 +214,13 @@ const JsonInterceptPlugin:ServerPlugin = ({app})=>{
 
 vite 背后的原理都在 plugin 里，有兴趣可以每一个都了解一下
 
+<br >
 
-
-##### **build**
+### build
 
 这部分代码在 node/build/index.ts 中，build 目录的结构虽然与 server 相似，同样导出一个 build 方法，同样也有许多 plugin，不过这些 plugin 与 server 中的用途不一样，因为 build 使用了 rollup ，所以这些 plugin 也是为 rollup 打包的 plugin
 
-
+<br >
 
 结语：Vite原理下期再见
 
