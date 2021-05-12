@@ -1,10 +1,12 @@
-#### 背景
+### 背景
 
 也使用Axios很久了，但是并未详细了解过其内部的实现原理，以及其暴露出来的方法，这里坐一下学习记录
 
+<br >
 
+<br >
 
-#### Axios是什么
+### Axios是什么
 
 一个基于 Promise 来管理 http 请求的简洁、易用且高效的代码封装库。通俗一点来讲，它是一个前端替代Ajax的一个东西，可以使用它发起http请求接口功能，它是基于Promise的，相比于Ajax的回调函数能够更好的管理异步操作，引用一下官网的介绍
 
@@ -20,11 +22,13 @@
 > 自动转换 JSON 数据
 > 客户端支持防御 XSRF
 
+<br >
 
+<br >
 
-#### Axios源码分析
+### Axios源码分析
 
-##### npm安装包
+#### npm安装包
 
 <img src="https://qiniu-app.qtshe.com/1588503878876.jpg" style="zoom:45%;float:left;" />
 
@@ -84,9 +88,9 @@ module.exports = axios;
 module.exports.default = axios;
 ```
 
+<br >
 
-
-##### defaultConfig参数
+#### defaultConfig参数
 
 ```javascript
 var axios = createInstance(defaults);
@@ -132,9 +136,9 @@ defaults.headers = {
 
 从上面便可以看出来，axios能够即在客户端使用又能在浏览器使用的奥秘，它是通过Nodejs和浏览器中各自的全局变量来区别当前在哪个环境下，然后底层各自实现，再暴露出一套统一的API出来给我们使用。同时它还默认了想 超时时间，Headers信息，alidateStatus等一些默认值进去，当我们在使用的时候不传递覆盖这些值时，即走默认的配置
 
+<br >
 
-
-##### 各环境中的实现
+#### 各环境中的实现
 
 【/adapters/http.js】文件内容，看看Nodejs中的Axios的实现
 
@@ -190,9 +194,9 @@ module.exports = function xhrAdapter(config) {
 
 一个完整的Ajax库封装流程，只不过axios暴露了一个Promise出去，所以axios在浏览器端和Ajax底层的原理是一样的，都是通过浏览器的XMLhttpRequest这个底层接口进行的一次封装
 
+<br >
 
-
-##### Axios构造函数
+#### Axios构造函数
 
 【/lib/core/Axios.js】上面已经看了在入口进去的axios文件中，createInstance函数传递的参数，接下来再看看createInstance内部的Axios构造函数做了什么
 
@@ -222,9 +226,11 @@ InterceptorManager.prototype.forEach = function forEach(fn) {...}
 
 拦截器暴露了三个方法use，eject，forEach三个方法，相信大家很多人在写自己的拦截器的时候都是用过use这个属性。后面两个比较少用，但是可以通过它的代码看出来，eject是删除use过的内容，forEach则是循环执行传入fn
 
+<br >
 
+<br >
 
-#### Interceptors 拦截器
+### Interceptors 拦截器
 
 axios 官网中对 Interceptors 的使用方法如下： 用户可以通过 then 方法为请求添加回调，而拦截器中的回调将在 then 中的回调之前执行：
 
@@ -348,6 +354,3 @@ Axios.prototype.request = function request(config) {
 通过巧妙的利用unshift、push、shift等数组队列、栈方法，实现了请求拦截、执行请求、响应拦截的流程设定，注意无论是请求拦截还是响应拦截，越先添加的拦截器总是越“贴近”执行请求本身
 
 可以看到，axios在实现封装网络请求所需的各项扩展功能时，都是使用的最朴素JavaScript源生方法，并且总是通过简单的链式then方法将这些功能与核心的promise对象关联。此外各种优化性能的方法，也都是采用的很基本的原理
-
-
-
