@@ -1,12 +1,12 @@
-#### 前言
+## 前言
 
 React Hooks 是 React 16.8 引入的新特性，允许我们在不使用 Class 的前提下使用 state 和其他特性。React Hooks 要解决的问题是状态共享，是继 render-props 和 higher-order components 之后的第三种状态逻辑复用方案，不会产生 JSX 嵌套地狱问题
 
+<br >
 
+<br >
 
-
-
-#### 状态逻辑复用
+## 状态逻辑复用
 
 一般来说，组件是 UI 和逻辑，但是逻辑这一层面却很难复用。对用户而言，组件就像一个黑盒，我们应该拿来即用。但当组件的样式或者结构不满足需求的时候，我们只能去重新实现这个组件
 
@@ -43,9 +43,9 @@ const List = ({ isLoading ?) => {
 
 这几个例子都指向了同一个问题，那就是如何实现组件的逻辑复用？
 
+<br >
 
-
-##### render props
+### render props
 
 将函数作为 props 传给父组件，父组件中的状态共享，通过参数传给函数，实现渲染，这就是 `render props`。使用 `render prop` 的库有 React Router、Downshift 以及 Formik。以下面这个 Toggle 组件为例子，我们一般可以这样用
 
@@ -89,9 +89,9 @@ class Toggle extends Component {
 
 关于 render props 的更多内容可以参考 React 中文网的相关章节：Render Props
 
+<br >
 
-
-##### higher-order components
+### higher-order components
 
 higher-order components 一般简称 hoc，中文翻译为高阶组件。从名字上就可以看出来，高阶组件肯定和高阶函数有什么千丝万缕的关系。高阶组件的本质是一个高阶函数，它接收一个组件，返回一个新的组件。在这个新的组件中的状态共享，通过 props 传给原来的组件。以刚刚那个 Toggle 组件为例子，高阶组件同样可以被多次复用，常常可以配合装饰器一起使用
 
@@ -134,9 +134,9 @@ const Toggle = initial => WrappedComponent => {
 }
 ```
 
+<br >
 
-
-##### render props 和高阶组件的弊端
+### render props 和高阶组件的弊端
 
 不管是 render props 还是高阶组件，他们要做的都是实现状态逻辑的复用，可这俩是完美的解决方案吗？考虑一下，如果我们依赖了多个需要复用的状态逻辑的时候，该怎么写呢？以 render props 为例
 
@@ -192,9 +192,9 @@ const App = epitath(function*() {
 
 更多细节可以参考黄子毅的文章：精读《Epitath 源码 - renderProps 新用法》
 
+<br >
 
-
-##### React Hooks
+### React Hooks
 
 React Hooks 则可以完美解决上面的嵌套问题，它拥有下面这几个特性
 
@@ -224,11 +224,11 @@ function useWindowWidth(){
 
 <img src="https://qiniu-image.qtshe.com/B2A0E207B00.png" style="zoom:67%;float:left;" />
 
+<br >
 
+<br >
 
-
-
-#### useState & useRef
+## useState & useRef
 
 useState 是 React Hooks 中很基本的一个 API，它的用法主要有这几种
 
@@ -242,9 +242,9 @@ const [ count2, setCount2 ] = useState(() => 0)
 setCount1(1); // 修改 state
 ```
 
+<br >
 
-
-##### 和 class state 的区别
+### 和 class state 的区别
 
 虽然函数组件也有了 state，但是 function state 和 class state 还是有一些差异
 
@@ -252,9 +252,9 @@ setCount1(1); // 修改 state
 2. function state 保存的是快照，class state 保存的是最新值
 3. 引用类型的情况下，class state 不需要传入新的引用，而 function state 必须保证是个新的引用
 
+<br >
 
-
-##### 快照（闭包） vs 最新值（引用）
+### 快照（闭包） vs 最新值（引用）
 
 在开始前，先抛出这么一个问题。在 1s 内频繁点击10次按钮，下面代码的执行表现是什么
 
@@ -298,9 +298,9 @@ class 组件里面可以通过 this.state 引用到 count，所以每次 setTime
 
 在 function component 里面每次更新都是重新执行当前函数，也就是说 setTimeout 里面读取到的 count 是通过闭包获取的，而这个 count 实际上只是初始值，并不是上次执行完成后的最新值，所以最后只加了1次
 
+<br >
 
-
-##### 快照和引用的转换
+### 快照和引用的转换
 
 如果我想让函数组件也是从0加到10，那么该怎么来解决呢？聪明的你一定会想到，如果模仿类组件里面的 this.state，我们用一个引用来保存 count 不就好了吗？没错，这样是可以解决，只是这个引用该怎么写呢？我在 state 里面设置一个对象好不好？就像下面这样
 
@@ -316,9 +316,9 @@ setState({
 })
 ```
 
+<br >
 
-
-##### useRef
+### useRef
 
 想要解决这个问题，那就涉及到另一个新的 Hook 方法 —— useRef。useRef 是一个对象，它拥有一个 current 属性，并且不管函数组件执行多少次，而 useRef 返回的对象永远都是原来那一个
 
@@ -342,7 +342,7 @@ useRef 有下面这几个特点
 3. useRef 在渲染周期内永远不会变，因此可以用来引用某些数据
 4. 修改 ref.current 不会引发组件重新渲染
 
-
+<br >
 
 useRef vs createRef
 
@@ -350,9 +350,9 @@ useRef vs createRef
 2. useRef 只能用于函数组件，createRef 可以用在类组件中
 3. useRef 在每次重新渲染后都保持不变，而 createRef 每次都会发生变化
 
+<br >
 
-
-##### 写需求遇到的坑
+### 写需求遇到的坑
 
 <img src="https://qiniu-image.qtshe.com/5B7C56914B.png" style="zoom:40%;float:left;" />
 
@@ -366,11 +366,11 @@ useRef vs createRef
 
 <img src="https://qiniu-image.qtshe.com/CA65ECA8B13.png" style="zoom:40%;float:left;" />
 
+<br >
 
+<br >
 
-
-
-#### useEffect
+## useEffect
 
 useEffect 是一个 Effect Hook，常用于一些副作用的操作，在一定程度上可以充当 componentDidMount、componentDidUpdate、componentWillUnmount 这三个生命周期。useEffect 是非常重要的一个方法，可以说是 React Hooks 的灵魂，它用法主要有这么几种
 
@@ -401,7 +401,7 @@ function Appt) {
 }
 ```
 
-
+<br >
 
 useEffect 比较重要，它主要有这几个作用
 
@@ -410,9 +410,9 @@ useEffect 比较重要，它主要有这几个作用
 3. 从命令式变成声明式，不需要再关注应该在哪一步做某些操作，只需要关注依赖数据
 4. 通过 useEffect 和 useState 可以编写一系列自定义的 Hook
 
+<br >
 
-
-##### useEffect vs useLayoutEffect
+### useEffect vs useLayoutEffect
 
 useLayoutEffect 也是一个 Hook 方法，从名字上看和 useEffect 差不多，他俩用法也比较像。在90%的场景下我们都会用 useEffect，然而在某些场景下却不得不用 useLayoutEffect。useEffect 和 useLayoutEffect 的区别是
 
@@ -464,11 +464,11 @@ const Animate =()=>{
 
 <img src="https://qiniu-image.qtshe.com/RE345BD07046DC64.png" style="zoom:50%;float:left;" />
 
+<br >
 
+<br >
 
-
-
-#### useMemo
+## useMemo
 
 useMemo 的用法类似 useEffect，常常用于缓存一些复杂计算的结果。useMemo 接收一个函数和依赖数组，当数组中依赖项变化的时候，这个函数就会执行，返回新的值
 
@@ -484,17 +484,17 @@ const sum = useMemo(() => {
 
 DatePicker 组件每次打开或者切换月份的时候，都需要大量的计算来算出当前需要展示哪些日期。然后再将计算后的结果渲染到单元格里面，这里可以使用 useMemo 来缓存，只有当传入的日期变化时才去计算
 
+<br >
 
+<br >
 
-
-
-#### useCallback
+## useCallback
 
 和 useMemo 类似，只不过 useCallback 是用来缓存函数
 
+<br >
 
-
-##### 匿名函数导致不必要的渲染
+### 匿名函数导致不必要的渲染
 
 ```react
 class App extends Component {
@@ -548,23 +548,21 @@ function Appt) {
 }
 ```
 
+<br >
 
+<br >
 
+## useReducer && useContext
 
-
-
-
-#### useReducer && useContext
-
-##### useReducer
+### useReducer
 
 useReducer 和 useState 的用法很相似，甚至在 preact 中，两者实现都是一样的。useReducer 接收一个 reducer 函数和初始 state，返回了 state 和 dispatch 函数，常常用于管理一些复杂的状态，适合 action 比较多的场景
 
 <img src="https://qiniu-image.qtshe.com/RE00DA820A72WE0B4.png" style="zoom:100%;float:left;" />
 
+<br >
 
-
-##### useContext
+### useContext
 
 在上一节谈到 React16 新特性的时候，讲过新版 Context API 的用法
 
@@ -587,11 +585,11 @@ function Childf) {
 }
 ```
 
+<br >
 
+<br >
 
-
-
-#### Custom Hooks
+## Custom Hooks
 
 对于 react 来说，在函数组件中使用 state 固然有一些价值，但最有价值的还是可以编写通用 custom hooks 的能力。想像一下，一个单纯不依赖 UI 的业务逻辑 hook，我们开箱即用。不仅可以在不同的项目中复用，甚至还可以跨平台使用，react、react native、react vr 等等。编写自定义 hook 也需要以 use 开头，这样保证可以配合 eslint 插件使用。在 custom hooks 中也可以调用其他 hook，当前的 hook 也可以被其他 hook 或者组件调用。以官网上这个获取好友状态的自定义 Hook 为例
 
@@ -615,17 +613,17 @@ function useFriendStatus(friendID) {
 
 这个自定义 Hook 里面对好友的状态进行了监听，每次状态更新的时候都会去更新 isOnline，当组件卸载的时候会清除掉这个监听。这就是 React Hooks 最有用的地方，它允许我们编写自定义 Hook，然后这个自定义 Hook 可以复用给多个组件，并且不会和 UI 耦合到一起
 
+<br >
 
+<br >
 
-
-
-#### React Hooks 原理
+## React Hooks 原理
 
 由于 preact hooks 的代码和原有的逻辑耦合度很小，这里为了更加浅显易懂，这里选用了 preact hooks 的源码来解读
 
+<br >
 
-
-##### Hooks 执行流程
+### Hooks 执行流程
 
 在 React 中，组件返回的 JSX 元素也会被转换为虚拟 DOM，就是下方的 vnode，每个 vnode 上面挂载了一个 _component 属性，这个属性指向了组件实例。而在组件实例上面又挂载了一个 _hooks 属性，这个 _hooks 属性里面保存了我们执行一个组件的时候，里面所有 Hook 方法相关的信息
 
@@ -644,9 +642,9 @@ function useFriendStatus(friendID) {
 
 通过上面的分析，就不难发现，为什么 hooks 方法不能放在条件语句里面了。因为每次进入这个函数的时候，都是要和 currentIndex 一一匹配的，如果更新前后少了一个 Hook 方法，那么就完全对不上了，导致出现大问题
 
+<br >
 
-
-##### useState 和 useReducer
+### useState 和 useReducer
 
 再来看下面 useState 和 useReducer 的源码就会更容易理解一些
 
@@ -677,9 +675,9 @@ export function useReducer(reducer, initialState, init) {
 
 很明显，getHookState 是根据 currentIndex 来从 _list 里面取和当前 Hook 相关的一些信息。如果是初始化状态（即没有 hookState._component）这个属性的时候，就会去初始化 useState 的两个返回值，否则就会直接返回上一次缓存的结果
 
+<br >
 
-
-##### useEffect
+### useEffect
 
 useEffect 和 useState 差不多，区别就在 useEffect 接收的函数会放到一个 _pendingEffects 里面，而非 _list 里面
 
@@ -711,11 +709,11 @@ options.diffed = vnode => {
 }
 ```
 
+<br >
 
+<br >
 
-
-
-#### 总结
+## 总结
 
 最后，这里对 React Hooks 的整个运行流程来进行一下总结和梳理
 
