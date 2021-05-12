@@ -92,7 +92,7 @@ A（客户端）想租C（服务端）的房子,但是A（客户端）并不认�
 
 ### 命令
 
-<img src="https://qiniu-image.qtshe.com/5D72B8532484DF7.png" style="zoom:60%; float:left;" />
+<img src="https://qiniu-image.qtshe.com/EEAC66C055D16EC.png" style="zoom:60%; float:left;" />
 
 <br >
 
