@@ -1,38 +1,40 @@
-#### 前言
+## 前言
 
 Service Worker是渐进式web应用（PWA）的核心技术，所以在了解Service Worker之前先了解一下另一个概念：PWA(Progressive Web Apps)，PWA是一个具有响应式布局的Web应用，可以离线工作，并能够安装到设备的主屏幕上。其实是在主屏幕上添加该Web应用的快捷方式
 
 Service Worker通过注册之后，可以独立于浏览器在后台运行，控制我们的一个或者多个页面。如果我们的页面在多个窗口中打开，Service Worker不会重复创建，就算浏览器关闭之后，Service worker也同样运行。但是浏览器是不会允许Service Worker一直处于工作状态。因为随着用户打开越来越多的注册了Service Worker的页面，性能肯定会收到影响，在后面的生命周期中，我们会一起探讨Service Worker的运行原理
 
+<br >
 
+<br >
 
-#### Service Worker
+## Service Worker
 
 Service Worker是客户端和服务端的代理层，客户端向服务器发送的请求，都可以被Service Worker拦截，并且可以修改请求，返回响应
 
 一个Service Worker是一段运行在浏览器后台进程里的脚本，他独立于当前页面，提供了那些不需要与web页面交互的功能在网页背后悄悄执行的能力。在将来，基于它可以实现消息推送，静静更新以及地理围栏等服务，但是目前它首先要具备的功能是拦截和处理网络请求的功能，包括可编程的消息缓存管理能力，是PWA的核心
 
+<br >
 
-
-##### Service Worker的作用
+### Service Worker的作用
 
 1. 网络代理，转发请求，伪造响应
 2. 离线缓存
 3. 消息推送
 4. 后台消息传递
 
+<br >
 
-
-##### 简介内容
+### 简介内容
 
 - 它是JavaScript Worker，所以它不能直接操作DOM，但是service  worker可以通过postMessage与页面之间通信，把消息通知给页面，如果需要的话，让页面自己去操作DOM
 - Service worker是一个可编程的网络代理，允许开发者控制页面上处理的网络请求
 - 在不被使用的时候，它会自己终止，而当它再次被用到的时候，会被重新激活，所以你不能依赖于service worker的onfecth和onmessage的处理函数中的全局状态。如果你想要保存一些持久化的信息，你可以在service worker里使用IndexedDB API
 - Service worker大量使用promise，所以想要对promise有清晰的认知
 
+<br >
 
-
-##### Service Worker的优势
+### Service Worker的优势
 
 * 支持离线访问
 
@@ -46,9 +48,9 @@ Service Worker是客户端和服务端的代理层，客户端向服务器发送
 
   在不追求返回结果的数据请求中，可以使用Service Worker进行代理。当客户端从离线转为在线的时候，就算已经关闭了页面，Service Worker也能够帮助我们继续发送代理的请求。无论，用户是在线、离线还是网络不稳定的时候，借助Service Worker都能够提供一个相对完整的用户体验
 
+<br >
 
-
-##### 安全策略
+### 安全策略
 
 由于serviceworker功能强大，可以修改任何通过它的请求，因此需要对其进行一定的安全限制。
 
@@ -70,9 +72,9 @@ Service Worker是客户端和服务端的代理层，客户端向服务器发送
   })
   ```
 
+<br >
 
-
-##### 式例
+### 式例
 
 根据一个简单的示例，看一下Service Worker是如何运行的
 
@@ -116,13 +118,13 @@ self.addEventListener('fetch', function(event) {
 
 当我们关闭所有运行代码的标签页之后再次打开，就会惊奇的发现，页面更新了。想要搞明白这些问题，就必须要了解Service Worker的生命周期
 
+<br >
 
-
-##### 生命周期
+### 生命周期
 
 <img src="https://qiniu-image.qtshe.com/as7r1x0pxk.png" style="float: left;" />
 
-
+<br >
 
 在注册Service Worker之后，Service Worker会马上进去installing的生命周期进行安装，同时会进入Service Worker的install事件中。如果在installing中，有任何资源加载失败，都会导致安装失败，Service Worker会直接进入废弃状态
 
@@ -134,9 +136,9 @@ self.addEventListener('fetch', function(event) {
 
 回到安装的时候，如果当前的页面已经存在了一个激活的Service Worker的时候，在新的Service Worker安装完成，会进入Waiting状态。如果页面所有的标签页全部关闭之后，或者导航到一个不在控制范围内的页面。再次打开新的Service Worker才会生效
 
+<br >
 
-
-##### CacheStorage API
+### CacheStorage API
 
 在Service Worker中，通常使用CacheStorage来管理缓存
 
@@ -172,9 +174,9 @@ CacheStorage为我们提供了一系列的api来操作缓存。这些api都是�
 
   在查询相关的缓存的时候，通过match方法，传入url或者Request。究竟传入什么参数，取决于如何添加的缓存。如果在具体的cache上调用这个方法，就是在当前缓存下去查找，如果在window.caches下调用，就是在全局缓存中匹配
 
+<br >
 
-
-##### CacheStorage和http缓存的关系
+### CacheStorage和http缓存的关系
 
 在发送http请求的时候，请求会先到达Service Worker。在Service Worker中，使用CacheStorage来查询是否具有可用的缓存
 
@@ -186,9 +188,9 @@ CacheStorage不能取代过去的HTTP缓存。CacheStorage因为Service Worker�
 
 <img src="https://qiniu-image.qtshe.com/qrkxb5m0gb.png" style="float: left;" />
 
+<br >
 
-
-##### 缓存模式
+### 缓存模式
 
 缓存模式主要探讨了一个关于缓存利用率和更新的权衡问题。如果缓存利用率高了的话，代码更新速度必然受到影响
 
@@ -236,9 +238,9 @@ self.addEventListener('fetch', (event) => {
 })
 ```
 
+<br >
 
-
-##### 基于版本控制的缓存模式
+### 基于版本控制的缓存模式
 
 在版本控制的缓存模式下，可以既提高缓存效率，又能解决版本更新不及时的问题，接下来通过一个示例来阐述这种模式
 
@@ -336,9 +338,9 @@ if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
   })
   ```
 
+<br >
 
-
-##### 使用后台同步保证离线功能
+### 使用后台同步保证离线功能
 
 客户端和web在用户的角度看来，有一个很大的区别是，在客户端执行了一些操作，比如发布文章。就算在断网状态下，用户也不会担心自己编辑的内容丢失。如果在一般的web页面，所有的数据只会跟随浏览器的关闭而消失
 
