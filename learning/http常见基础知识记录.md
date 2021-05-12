@@ -119,7 +119,7 @@ HTTPS 加解密流程如下：
 
 ### 四次挥手
 
-<img src="https://qiniu-app.qtshe.com/asd1111.png" style="zoom:80%;" />
+<img src="https://qiniu-app.qtshe.com/asd1111.png" width="500px" />
 
 <br >
 
