@@ -1,10 +1,10 @@
-##### 前言
+## 前言
 
 最近逛GitHub总是因为搜不到满意的答案而感觉GitHub很low，但是技术大牛们都说闲暇时间都在逛GitHub来了解当下的火热开源项目和技术啥的，就感觉很困惑，他们是如果精准查到自己需要的资源的呢，于是在网上搜索了一波相关解答，结果真的是我的姿势有问题，如下进行了一番记录总结
 
+<br >
 
-
-##### 普通的搜索
+### 普通的搜索
 
 相信一般人搜索项目时，都是和以前的我一样，直接搜索技术栈相关的项目
 
@@ -16,9 +16,9 @@
 
 GitHub 的搜索是非常强大的！下面介绍更高级的搜索技巧
 
+<br >
 
-
-##### 搜索语法
+### 搜索语法
 
 搜索 GitHub 时，其实可以构建匹配特定数字和单词的查询
 
@@ -116,9 +116,9 @@ GitHub 的搜索是非常强大的！下面介绍更高级的搜索技巧
 
   `@me` 只能与限定符一起使用，而不能用作搜索词，例如 `@me main.workflow`
 
+<br >
 
-
-##### 高级的搜索
+### 高级的搜索
 
 * 按仓库名称、说明或自述文件内容搜索
 
@@ -135,7 +135,7 @@ GitHub 的搜索是非常强大的！下面介绍更高级的搜索技巧
 
   <img src="https://qiniu-image.qtshe.com/8EFD46D408BB3a.png" style="zoom:80%;" />
 
-
+<br >
 
 * 在用户或组织的仓库内搜索
 
@@ -146,7 +146,7 @@ GitHub 的搜索是非常强大的！下面介绍更高级的搜索技巧
   | `user:USERNAME` | **user:biaochenxuying forks:>=100** 匹配来自 @biaochenxuying、拥有超过 100 复刻的仓库 |
   | `org:ORGNAME`   | **org:github** 匹配来自 GitHub 的仓库                        |
 
-
+<br >
 
 * 按仓库大小搜索
 
@@ -161,7 +161,7 @@ GitHub 的搜索是非常强大的！下面介绍更高级的搜索技巧
 
   <img src="https://qiniu-image.qtshe.com/58CDE0E5F6DD1.png" style="zoom:80%;" />
 
-
+<br >
 
 * 按关注者数量搜索
 
@@ -174,7 +174,7 @@ GitHub 的搜索是非常强大的！下面介绍更高级的搜索技巧
 
   <img src="https://qiniu-image.qtshe.com/68241B23850712.png" style="zoom:80%;" />
 
-
+<br >
 
 * 按复刻数量搜索
 
@@ -189,7 +189,7 @@ GitHub 的搜索是非常强大的！下面介绍更高级的搜索技巧
 
   <img src="https://qiniu-image.qtshe.com/2EEC59B1ECD600.png" style="zoom:80%;" />
 
-
+<br >
 
 * 按星号数量搜索
 
@@ -201,7 +201,7 @@ GitHub 的搜索是非常强大的！下面介绍更高级的搜索技巧
   |           | **stars:10..20** 匹配具有 10 到 20 个星号、小于 1000 KB 的仓库 |
   |           | **stars:>=500 fork:true language:vue** 匹配具有至少 500 个星号，包括复刻的星号（以 vue 编写）的仓库 |
 
-
+<br >
 
 * 按仓库创建或上次更新时间搜索
 
@@ -222,7 +222,7 @@ GitHub 的搜索是非常强大的！下面介绍更高级的搜索技巧
   | `pushed:YYYY-MM-DD`  | **css pushed:>2020-02-01** 匹配具有 'css' 字样、在 2020 年 1 月之后收到推送的仓库 |
   |                      | **vue pushed:>=2020-03-06 fork:only** 匹配具有 'vue' 字样、在 2020 年 3 月 6 日或之后收到推送并且作为复刻的仓库 |
 
-
+<br >
 
 * 按语言搜索
 
@@ -232,7 +232,7 @@ GitHub 的搜索是非常强大的！下面介绍更高级的搜索技巧
   | :------------------ | :----------------------------------------------------------- |
   | `language:LANGUAGE` | **vue language:javascript** 匹配具有 'vue' 字样、以 JavaScript 编写的仓库 |
 
-
+<br >
 
 * 按主题搜索
 
@@ -248,7 +248,7 @@ GitHub 的搜索是非常强大的！下面介绍更高级的搜索技巧
 
   <img src="https://qiniu-image.qtshe.com/A5ED3590267.png" style="zoom:80%;" />
 
-
+<br >
 
 * 按主题数量搜索
 
@@ -259,7 +259,7 @@ GitHub 的搜索是非常强大的！下面介绍更高级的搜索技巧
   | `topics:n` | **topics:5** 匹配具有五个主题的仓库  |
   |            | **topics:>3** 匹配超过三个主题的仓库 |
 
-
+<br >
 
 * 使用可视界面搜索
 
@@ -275,7 +275,7 @@ GitHub 的搜索是非常强大的！下面介绍更高级的搜索技巧
 
   <img src="https://qiniu-image.qtshe.com/3227CEC37F240123.png" style="zoom:80%;" />
 
-
+<br >
 
 * 按许可搜索
 
@@ -285,7 +285,7 @@ GitHub 的搜索是非常强大的！下面介绍更高级的搜索技巧
   | :------------------------ | :----------------------------------------------------------- |
   | `license:LICENSE_KEYWORD` | **license:apache-2.0** 匹配根据 Apache License 2.0 授权的仓库 |
 
-
+<br >
 
 * 按公共或私有仓库搜索
 
@@ -296,7 +296,7 @@ GitHub 的搜索是非常强大的！下面介绍更高级的搜索技巧
   | `is:public`  | **is:public org:github** 匹配 GitHub 拥有的公共仓库          |
   | `is:private` | **is:private pages** 匹配您有访问权限且包含 'pages' 字样的私有仓库 |
 
-
+<br >
 
 * 按公共或私有仓库搜索
 
@@ -307,7 +307,7 @@ GitHub 的搜索是非常强大的！下面介绍更高级的搜索技巧
   | `mirror:true`  | **mirror:true GNOME** 匹配是镜像且包含 'GNOME' 字样的仓库    |
   | `mirror:false` | **mirror:false GNOME** 匹配并非镜像且包含 'GNOME' 字样的仓库 |
 
-
+<br >
 
 * 基于仓库是否已存档搜索
 
@@ -318,7 +318,7 @@ GitHub 的搜索是非常强大的！下面介绍更高级的搜索技巧
   | `archived:true`  | **archived:true GNOME** 匹配已存档且包含 'GNOME' 字样的仓库  |
   | `archived:false` | **archived:false GNOME** 匹配未存档且包含 'GNOME' 字样的仓库 |
 
-
+<br >
 
 * 基于具有 `good first issue` 或 `help wanted` 标签的议题数量搜索
 
@@ -329,11 +329,9 @@ GitHub 的搜索是非常强大的！下面介绍更高级的搜索技巧
   | `good-first-issues:>n`  | **good-first-issues:>2 javascript** 匹配具有超过两个标签为 `good-first-issue` 的议题且包含 "javascript" 字样的仓库 |
   | `help-wanted-issues:>n` | **help-wanted-issues:>4 react** 匹配具有超过四个标签为 `help-wanted` 的议题且包含 'React' 字样的仓库 |
 
+<br >
 
-
-
-
-##### 总结
+### 总结
 
 其实，以上很多内容的都是来自于 GitHub 的官方文档，如果你还想学习更多技巧，请看 GitHub 官方文档 : https://docs.github.com/cn
 
