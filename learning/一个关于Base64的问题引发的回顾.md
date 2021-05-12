@@ -2,7 +2,7 @@
 
 一次浏览支付宝社区的看到这么一个问题：小程序webview嵌套的h5用了 img src 是base64图片，域名也校验导致访问受限！
 
-<img src="https://qiniu-image.qtshe.com/3D49B1AF8CA.png" width="450px" style="float:left;" />
+<img src="https://qiniu-image.qtshe.com/3D49B1AF8CA.png" width="370px" style="float:left;" />
 
 看得我一愣一愣的，印象中base64编码的图片不就已经是数据源了吗，怎么还会触发资源请求，还被访问受限了呢，难道我记错了？于是接下来对base64进行一波回顾
 
