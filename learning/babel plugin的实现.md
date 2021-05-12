@@ -1,4 +1,4 @@
-#### babel plugin 概念
+### babel plugin 概念
 
 先看一个简单的babel plugin示例
 
@@ -30,9 +30,9 @@ const x = !0
 
 接着来简单分析一下这个plugin，一个plugin就是一个function，入参就是babel对象，这里利用到了babel中types对象，来自于@babel/types这个库，然后操作path对象进行节点替换操作
 
+<br >
 
-
-##### path
+#### path
 
 path是一个对象，可以用path访问到当前节点、父节点，也可以去调用添加、更新、移动和删除节点有关的其他很多方法。举几个示例
 
@@ -64,9 +64,9 @@ path.skip()
 path.stop()
 ```
 
+<br >
 
-
-##### @babel/types
+#### @babel/types
 
 可以理解它为一个工具库，类似于 Lodash，里面封装了非常多的帮做方法，一般用处如下
 
@@ -93,7 +93,7 @@ path.stop()
     }
   ```
 
-
+<br >
 
 * 构建节点
   直接手写复杂的 AST 结构是不现实的，所以有了一些帮助方法去构建这些节点，示例：
@@ -123,9 +123,9 @@ path.stop()
 
   其中每一种节点都有自己的构造方法，都有自己特定的入参，详细请参考官方文档
 
+<br >
 
-
-##### scope
+#### scope
 
 作用域的概念，每一个函数，每一个变量都有自己的作用域，在编写babel plugin的时候要特别小心，再改变或者添加代码的时候要注意不要破坏了原有的代码结构
 
@@ -145,15 +145,15 @@ path.scope.generateUidIdentifier("n")
 path.scope.rename("n", "x")
 ```
 
+<br >
 
+<br >
 
-
-
-#### babel解析器
+### babel解析器
 
 接着看看 babel 解析器，看看 babel 是如何运作的，才能更好的知道 plugin 该怎么去实现
 
-##### tiny-compiler 编译器
+#### tiny-compiler 编译器
 
 假如现在有一些新特性的语法，其中 add、subtract 是普通的函数名，需要转义到正常的 javascript 语法，以便让浏览器能够兼容的运行
 
@@ -177,11 +177,11 @@ add(2, subtract(4, 2))
 - Transformation 转义
 - Code Generation 代码生成
 
+<br >
 
+<br >
 
-
-
-#### Parsing 解析
+### Parsing 解析
 
 Parsing 阶段分成两个子阶段
 
@@ -193,9 +193,9 @@ Parsing 阶段分成两个子阶段
 (add 2 (subtract 4 2))
 ```
 
+<br >
 
-
-##### Lexical Analysis 词法分析
+#### Lexical Analysis 词法分析
 
 Lexical Analysis 词法分析可以理解为把代码拆分成最小的独立的语法单元，去描述每一个语法，可以是操作符，数字，标点符号等，最后生成token数组
 
@@ -287,9 +287,9 @@ function tokenizer(input) {
 }
 ```
 
+<br >
 
-
-##### Syntactic Analysis 语法分析
+#### Syntactic Analysis 语法分析
 
 Syntactic Analysis 语法分析就是根据上一步的tokens数组转化成语法之前的关系，这就是Abstract Syntax Tree,也就是我们常说的AST
 
@@ -378,13 +378,13 @@ function parser(tokens) {
 
 从上述代码来看，跟阶段AST是根节点是 type= Program，body 是一个嵌套的 AST 数组结构。再单独处理了 number 和 string 类型之后，再递归的调用walk函数，以解决嵌套的括号表达式
 
+<br >
 
+<br >
 
+### Transformation 转义
 
-
-#### Transformation 转义
-
-##### traverser 遍历器
+#### traverser 遍历器
 
 我们最终的目的肯定是想转化成我们想要的代码，那就得更改我们刚刚得到的AST结构
 
@@ -403,7 +403,7 @@ const visitor = {
 
 由于深度优先遍历的特性，我们遍历到一个节点时有 enter 和 exit 的概念，代表着遍历一些类似于 CallExpression 这样的节点时，这个语句，enter 表示开始解析，exit 表示解析完毕
 
-
+<br >
 
 然后有一个函数，接受 ast 和 vistor 作为参数，实现遍历，类似于
 
@@ -464,9 +464,9 @@ function traverser(ast, visitor) {
 }
 ```
 
+<br >
 
-
-##### transformer 转换器
+#### transformer 转换器
 
 有了traverser遍历器后，就开始遍历吧，先看看前后两个 AST 的对比
 
@@ -528,11 +528,11 @@ function transformer(ast) {
 }
 ```
 
+<br >
 
+<br >
 
-
-
-#### CodeGeneration 代码生成
+### CodeGeneration 代码生成
 
 最后一个阶段就是用心生成的 AST 生成我们最后的代码了，也是生成 AST 的一个反过程
 
@@ -565,11 +565,11 @@ function codeGenerator(node) {
 }
 ```
 
+<br >
 
+<br >
 
-
-
-#### plugin 实现
+### plugin 实现
 
 写一个自定义 plugin 步骤如下
 
@@ -577,9 +577,9 @@ function codeGenerator(node) {
 - 源代码的AST
 - 转换后代码的AST
 
+<br >
 
-
-##### plugin的目的
+#### plugin的目的
 
 现在就做一个自定义的plugin，大家在应用写代码的时候可以通过webpack配置alias，比如说配置`@` -> `./src`，这样import的时候就直接从src目录下找所需要的代码了，这就是我们这个plugin的目的
 
@@ -601,17 +601,17 @@ import add from '@/common'  // -> import add from "./common"
 import add from '@/common'  // ->  import add from "../../common"
 ```
 
+<br >
 
+#### 源码的AST展示如下
 
-##### 源码的AST展示如下
-
-<img src="https://qiniu-image.qtshe.com/1CEB060582.png" style="zoom:43%;float:left;" />
+<img src="https://qiniu-image.qtshe.com/1CEB060582.png" width="500px" style="zoom:43%;float:left;" />
 
 那我们只需要找到 ImportDeclaration 节点中将 source 改成转换之后的代码是不是就可以了
 
+<br >
 
-
-##### 实现
+#### 实现
 
 ```js
 const localPath = require('path')
@@ -644,9 +644,9 @@ module.exports = function ({ types: t }) {
 }
 ```
 
+<br >
 
-
-##### 使用
+#### 使用
 
 回到babel的配置文件中来，这里我们用的是 babel.config.json
 
