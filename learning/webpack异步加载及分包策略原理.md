@@ -1,26 +1,26 @@
-#### webpack 异步加载
+### webpack 异步加载
 
 webpack ensure 有人称它为异步加载，也有人称为代码切割，他其实就是将 js 模块给独立导出一个.js 文件，然后使用这个模块的时候，再创建一个 script 对象，加入到 document.head 对象中，浏览器会自动帮我们发起请求，去请求这个 js 文件，然后写个回调函数，让请求到的 js 文件做一些业务操作
 
+<br >
 
+<br >
 
+### 看个例子
 
-
-#### 看个例子
-
-##### 场景
+#### 场景
 
 main.js 依赖两个 js 文件，testA 是点击 aBtn 按钮后，才执行的逻辑，testB 是点击 bBtn 按钮后，才执行的逻辑
 
+<br >
 
-
-##### Vue项目结构
+#### Vue项目结构
 
 <img src="https://qiniu-image.qtshe.com/EC79565BA5.png" style="zoom:40%;float:left;" />
 
+<br >
 
-
-##### webpack 打包的配置的代码
+#### webpack 打包的配置的代码
 
 ```js
 // webpack.config.js
@@ -46,9 +46,9 @@ module.exports = {
 }
 ```
 
+<br >
 
-
-##### App.vue页面代码
+#### App.vue页面代码
 
 ```vue
 <template>
@@ -78,9 +78,9 @@ export default {
 </script>
 ```
 
+<br >
 
-
-##### test.js 文件内容
+#### test.js 文件内容
 
 ```js
 // testA.js
@@ -92,9 +92,9 @@ const testB = 'hello B'
 module.exports = testB
 ```
 
+<br >
 
-
-##### 构建结论
+#### 构建结论
 
 此时，我们对项目进行 npm run build， 打包出来的只有两个 JS 文件（map文件不算）
 
@@ -104,13 +104,13 @@ module.exports = testB
 
 webpack.ensure 就解决了这个问题
 
+<br >
 
+<br >
 
+### require.ensure 异步加载
 
-
-#### require.ensure 异步加载
-
-##### JS 依赖异步加载
+#### JS 依赖异步加载
 
 下面我们将 JS 依赖改成异步加载的方式
 
@@ -147,9 +147,9 @@ export default {
 </script>
 ```
 
+<br >
 
-
-##### 构建
+#### 构建
 
 此时，我们再进行一下打包
 
@@ -184,11 +184,11 @@ require.ensure(dependencies: String[], callback: function(require), chunkName: S
 2. webpackJsonp.push 的的值，两个参数分别为异步加载的文件中存放的需要安装的模块对应的 id 和异步加载的文件中存放的需要安装的模块列表
 3. 在满足某种情况下，会执行具体模块中的代码
 
+<br >
 
+<br >
 
-
-
-#### import() 按需加载
+### import() 按需加载
 
 webpack4+ 官方文档提供了模块按需切割加载，配合 es6 的按需加载 import()  方法，可以做到减少首页包体积，加快首页的请求速度，只有其他模块，只有当需要的时候才会加载对应 js
 
@@ -229,11 +229,11 @@ export default {
 
 此时打包出来的文件和 webpack.ensure 方法是一样的
 
+<br >
 
+<br >
 
-
-
-#### 路由懒加载
+### 路由懒加载
 
 为什么需要懒加载？像 vue 这种单页面应用，如果没有路由懒加载，运用 webpack 打包后的文件将会很大，造成进入首页时，需要加载的内容过多，出现较长时间的白屏，运用路由懒加载则可以将页面进行划分，需要的时候才加载页面，可以有效的分担首页所承担的加载压力，减少首页加载用时
 
@@ -243,9 +243,9 @@ vue 路由懒加载有以下三种方式
 - ES6 的  import()
 - webpack 的 require.ensure()
 
+<br >
 
-
-##### vue 异步组件
+#### vue 异步组件
 
 这种方法主要是使用了 resolve 的异步机制，用 require 代替了 import 实现按需加载
 
@@ -264,9 +264,9 @@ export default new Router({
 })
 ```
 
+<br >
 
-
-##### ES6 的 import()
+#### ES6 的 import()
 
 vue-router 在官网提供了一种方法，可以理解也是为通过 Promise 的 resolve 机制，因为 Promise 函数返回的 Promise 为 resolve 组件本身，而我们又可以使用 import 来导入组件
 
@@ -285,9 +285,9 @@ export default new Router({
 })
 ```
 
+<br >
 
-
-##### require.ensure
+#### require.ensure
 
 这种模式可以通过参数中的 webpackChunkName 将 js 分开打包
 
@@ -306,17 +306,17 @@ export default new Router({
 })
 ```
 
+<br >
 
+<br >
 
-
-
-#### **webpack 分包策略**
+### webpack 分包策略
 
 在 webpack 打包过程中，经常出现 vendor.js， app.js 单个文件较大的情况，这偏偏又是网页最先加载的文件，这就会使得加载时间过长，从而使得白屏时间过长，影响用户体验。所以我们需要有合理的分包策略
 
+<br >
 
-
-##### CommonsChunkPlugin
+#### CommonsChunkPlugin
 
 在 Webapck4.x 版本之前，我们都是使用 CommonsChunkPlugin 去做分离
 
@@ -346,9 +346,9 @@ plugins: [
 
 ​	•	被 3 个 入口 chunk 共享的模块
 
+<br >
 
-
-##### optimization.splitChunks
+#### optimization.splitChunks
 
 webpack 4+ 最大的改动就是废除了 CommonsChunkPlugin 引入了 optimization.splitChunks。如果你的 mode 是 production，那么 webpack4+ 就会自动开启 Code Splitting
 
