@@ -1,8 +1,10 @@
-#### 前言
+### 前言
 
 JavaScript 中共有七种内置数据类型，包括基本类型和对象类型
 
-###### 基本类型
+<br >
+
+#### 基本类型
 
 基本类型分为以下六种：
 
@@ -17,15 +19,19 @@ JavaScript 中共有七种内置数据类型，包括基本类型和对象类型
 > 2. symbol是ES6中新增的数据类型，symbol 表示独一无二的值，通过 Symbol 函数调用生成，由于生成的 symbol 值为原始类型，所以 Symbol 函数不能使用 new 调用
 > 3. null 和 undefined 通常被认为是特殊值，这两种类型的值唯一，就是其本身
 
-###### 对象类型
+<br >
+
+#### 对象类型
 
 对象类型也叫引用类型，array和function是对象的子类型。对象在逻辑上是属性的无序集合，是存放各种值的容器。对象值存储的是引用地址，所以和基本类型值不可变的特性不同，对象值是可变的
 
+<br >
 
+<br >
 
-#### js中的强制转换规则
+### js中的强制转换规则
 
-##### ToPrimitive(转换为原始值)
+#### ToPrimitive(转换为原始值)
 
 ToPrimitive对原始类型不发生转换处理，只针对引用类型（object）的，其目的是将引用类型（object）转换为非对象类型，也就是原始类型
 
@@ -41,7 +47,9 @@ ToPrimitive 运算符接受一个值，和一个可选的 期望类型作参数�
 ToPrimitive(obj,type)
 ```
 
-###### type不同值的说明
+<br >
+
+#### type不同值的说明
 
 - type为string
   1. 先调用obj的toString方法，如果为原始值，则return，否则第2步
@@ -57,19 +65,25 @@ ToPrimitive(obj,type)
   1. 该对象为Date，则type被设置为String
   2. 否则，type被设置为Number
 
-###### Date数据类型特殊说明
+<br >
+
+#### Date数据类型特殊说明
 
 对于Date数据类型，我们更多期望获得的是其转为时间后的字符串，而非毫秒值（时间戳），如果为number，则会取到对应的毫秒值，显然字符串使用更多。其他类型对象按照取值的类型操作即可
 
-####### ToPrimitive总结
+<br >
+
+#### ToPrimitive总结
 
 ToPrimitive转成何种原始类型，取决于type，type参数可选，若指定，则按照指定类型转换，若不指定，默认根据实用情况分两种情况，Date为string，其余对象为number。那么什么时候会指定type类型呢，那就要看下面两种转换方式了
 
+<br >
 
+<br >
 
-#### toString
+### toString
 
-##### Object.prototype.toString()
+#### Object.prototype.toString()
 
 toString() 方法返回一个表示该对象的字符串
 
@@ -77,9 +91,11 @@ toString() 方法返回一个表示该对象的字符串
 
 这里先记住，valueOf() 和 toString() 在特定的场合下会自行调用
 
+<br >
 
+<br >
 
-#### valueOf
+### valueOf
 
 Object.prototype.valueOf()方法返回指定对象的原始值
 
@@ -115,9 +131,11 @@ console.log(obj.valueOf());//1
 
 ```
 
+<br >
 
+<br >
 
-#### Number
+### Number
 
 Number运算符转换规则
 
@@ -128,9 +146,11 @@ Number运算符转换规则
 
 > 对象这里要先转换为原始值，调用ToPrimitive转换，type指定为number了，继续回到ToPrimitive进行转换（看ToPrimitive）
 
+<br >
 
+<br >
 
-#### String
+### String
 
 String 运算符转换规则
 
@@ -157,9 +177,11 @@ String([1,[2,3]])            // '1,2,3'
 String(['koala',1])          //koala,1
 ```
 
+<br >
 
+<br >
 
-#### Boolean
+### Boolean
 
 ToBoolean 运算符转换规则
 
@@ -185,13 +207,15 @@ Boolean([]) // true
 Boolean(newBoolean(false)) // true
 ```
 
+<br >
 
+<br >
 
-#### js转换规则不同场景应用
+### js转换规则不同场景应用
 
-##### 什么时候自动转换为string类型
+#### 什么时候自动转换为string类型
 
-##### 在没有对象的前提下
+#### 在没有对象的前提下
 
 字符串的自动转换，主要发生在字符串的加法运算时。当一个值为字符串，另一个值为非字符串，则后者转为字符串
 
@@ -203,7 +227,9 @@ Boolean(newBoolean(false)) // true
 '2' + null// "2null"
 ```
 
-##### 当有对象且与对象+时候
+<br >
+
+#### 当有对象且与对象+时候
 
 ```javascript
 //toString的对象
@@ -250,9 +276,9 @@ console.log('2'+obj1)；
 
 > 不管是对象还不是对象，都有一个转换为原始值的过程，也就是ToPrimitive转换，只不过原始类型转换后不发生变化，对象类型才会发生具体转换
 
+<br >
 
-
-##### string类型转换开发过程中常出错的点
+#### string类型转换开发过程中常出错的点
 
 ```javascript
 var obj = {
@@ -264,9 +290,11 @@ obj.width + 20// "10020"
 
 预期输出结果120 实际输出结果10020
 
+<br >
 
+<br >
 
-#### 什么时候自动转换为Number类型
+### 什么时候自动转换为Number类型
 
 * 有加法运算符，但是无String类型的时候，都会优先转换为Number类型
 
@@ -299,9 +327,11 @@ obj.width + 20// "10020"
 
 > null转为数值时为0，而undefined转为数值时为NaN
 
+<br >
 
+<br >
 
-#### 判断等号也放在Number里面特殊说明
+### 判断等号也放在Number里面特殊说明
 
 == 抽象相等比较与+运算符不同，不再是String优先，而是Nuber优先。下面列举x == y的例子
 
@@ -310,6 +340,8 @@ obj.width + 20// "10020"
   ```javascript
   1 == 2 //false
   ```
+
+<br >
 
 * 如果存在对象，ToPrimitive() type为number进行转换，再进行后面比较
 
@@ -330,6 +362,8 @@ obj.width + 20// "10020"
   //转换为 0==0 //true
   ```
 
+<br >
+
 * 在boolean，按照ToNumber将boolean转换为1或者0，再进行后面比较
 
   ```javascript
@@ -340,6 +374,8 @@ obj.width + 20// "10020"
   '0' == false //true
   ```
 
+<br >
+
 * 如果x为string，y为number，x转成number进行比较
 
   ```javascript
@@ -348,9 +384,11 @@ obj.width + 20// "10020"
   '0' == 0  // true
   ```
 
-  
+<br >
 
-#### 什么时候进行布尔转换
+<br >  
+
+### 什么时候进行布尔转换
 
 - 布尔比较时
 - if(obj) , while(obj) 等判断时或者 三元运算符只能够包含布尔值
@@ -372,15 +410,19 @@ expression ? true : false
 !! expression
 ```
 
+<br >
 
+<br >
 
-#### NaN相关总结
+### NaN相关总结
 
-##### NaN的概念
+#### NaN的概念
 
 NaN 是一个全局对象的属性，NaN 是一个全局对象的属性，NaN是一种特殊的Number类型
 
-##### 什么时候返回NaN （开篇第二道题也得到解决）
+<br >
+
+#### 什么时候返回NaN （开篇第二道题也得到解决）
 
 - 无穷大除以无穷大
 - 给任意负数做开方运算
@@ -406,13 +448,15 @@ undefined + 1// NaN
 -'abc'// NaN
 ```
 
+<br >
 
+<br >
 
-#### 误区
+### 误区
 
-##### toString和String的区别
+#### toString和String的区别
 
-##### toString
+#### toString
 
 * toString()可以将数据都转为字符串，但是null和undefined不可以转换
 
@@ -424,12 +468,16 @@ undefined + 1// NaN
   //报错 TypeError: Cannot read property 'toString' of undefined
   ```
 
+<br >
+
 * toString()括号中可以写数字，代表进制
 
   * 二进制：.toString(2)
   * 八进制：.toString(8)
   * 十进制：.toString(10)
   * 十六进制：.toString(16)
+
+<br >
 
 * String
 
