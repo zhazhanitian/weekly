@@ -59,15 +59,15 @@
 
 你可以将如上代码运行于各浏览器，你可能看到这个效果
 
-1. chrome
+1. chrome <br >
 ![emoji1](https://cdn.linker.cc/iyunting2019-07-02/21/1562073532905.png )
-2.  Firefox
+3. Firefox <br >
 ![emoji2](https://cdn.linker.cc/iyunting2019-07-02/21/1562073630419.png )
-3.           IE
-![emoji2](https://cdn.linker.cc/iyunting2019-07-02/21/1562073838904.png )<br >
-4.     Edge
+3. IE <br >
+![emoji2](https://cdn.linker.cc/iyunting2019-07-02/21/1562073838904.png )
+4. Edge
 ![emoji4](https://cdn.linker.cc/iyunting2019-07-02/21/1562074000582.png )<br >
-5.  Android
+5. Android
 ![emoji5](https://cdn.linker.cc/iyunting2019-07-02/21/1562074787893.jpg )<br >
 
 由上可以看出各端的差距主要在移动端和IE之间，特别是移动端和PC端的差距，几乎改头换面了，这不说产品，自己这关很明显都过不了，况且IE非edge模式下还是黑白色。所以这个设计方案很明显被pass掉了
