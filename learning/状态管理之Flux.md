@@ -22,7 +22,7 @@
 
 #### 网络神图
 
-<img src="https://qiniu-app.qtshe.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_52e07466-9900-4260-9357-3fb8f266231b.png" alt="企业微信截图_52e07466-9900-4260-9357-3fb8f266231b" style="zoom:80%;" />
+<img src="https://qiniu-image.qtshe.com/T8K4K0PPJ93.png" style="zoom:80%;" />
 
 <br >
 
