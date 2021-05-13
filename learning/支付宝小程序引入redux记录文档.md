@@ -1,4 +1,4 @@
-#### 文件结构
+## 文件结构
 
 在项目根目录下文件结构目录
 
@@ -41,11 +41,11 @@
 
   redux SDK文件
 
+<br >
 
+<br >
 
-
-
-#### Actions
+## Actions
 
 Actions的action文件内容十分简单，就是对 dispatch 做一层封装，接收需要 dispatch 的 action data 对象，返回一个包含 action type 和 action data 的对象，统一存储，便于统一维护及重复使用，能清晰浏览各模块更新渠道和内容
 
@@ -73,21 +73,21 @@ import { updateSelectIndustry } from '/store/actions/publish.js'
 app.$store.dispatch(updateSelectIndustry({ firstIndustryId: id }))
 ```
 
+<br >
 
+<br >
 
+## Reducers模块拆分逻辑
 
-
-#### Reducers模块拆分逻辑
-
-##### 设计思路
+### 设计思路
 
 由于小程序端模块并不是很多，需要使用到状态管理工具的地方较少，基本需要的数据也就用户信息、发布填写内容及一些零散字段 （因为这里零散字段较少也无模块可分才合一，若内容过多时需要拆分）
 
 基此，将**获取用户信息接口返回内容做为一个模块维护、发布相关内容做一个模块维护、其余零散字段单独作为一个模块维护**
 
+<br >
 
-
-##### 实现方式
+### 实现方式
 
 * 每个 reducer 文件都提供一个initialState 方法，用于初始化该模块的 state 值
 
@@ -119,11 +119,11 @@ app.$store.dispatch(updateSelectIndustry({ firstIndustryId: id }))
   1. 更新和重置分开，这么设计方法会十分纯粹，更新就单独更新某些字段，重置就重置整个对象（现在的使用方式）
   2. 更新和重置柔和，在传入的 data 中使用 type 值来做区分
 
+<br >
 
+<br >
 
-
-
-#### 关注点
+## 关注点
 
 1. **store引入问题（巨坑）**
 
@@ -149,11 +149,11 @@ app.$store.dispatch(updateSelectIndustry({ firstIndustryId: id }))
 
    **这里的 app 不能在 util 文件头获取，因为在 app 页面头部有获取util，这是 app 未初始化好，如果放在util 头部获取，那么这里拿到的 app 可能时 undefined** 
 
+<br >
 
+<br >
 
-
-
-#### 引入步骤介绍（以零散字段模块为例）
+## 引入步骤介绍（以零散字段模块为例）
 
 [详细内容](http://cn.redux.js.org/docs/basics/Store.html)
 
