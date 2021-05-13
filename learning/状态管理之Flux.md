@@ -1,32 +1,40 @@
-#### Flux是什么
+## Flux是什么
 
 > Flux is the application architecture that Facebook uses for building client-side web applications. It complements React's composable view components by utilizing a unidirectional data flow. It's more of a pattern rather than a formal framework, and you can start using Flux immediately without a lot of new code
 
 这是Flux官方介绍，Flux是由Facebook官方提出的一套前端应用架构模式。它的核心概念是单向数据流。它不是具体的框架，而更像是一种软件开发模式
 
-###### Flux模式的结构图
+<br >
+
+#### Flux模式的结构图
 
 <img src="https://qiniu-app.qtshe.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_afd5f722-7e2d-445a-9c8a-f6eb6ee9510c.png" style="zoom:50%;" />
 
+<br >
 
+<br >
 
-#### Flux出现的背景
+## Flux出现的背景
 
 2014年，facebook提出了一个新的概念：Flux，旨在解决这些问题，其核心思想是“**组件化 + 单向数据流**”，在开始介绍之前，先说一说MV\*，应该都听说过开始的MVC，在这之后又衍生出了MVP和MVVM，这些都可以统称为MV\*。但是，随着前端代码复杂度的增加，人们发现越来越难以管理程序的状态，模块之间耦合严重，代码难以调试，因此很多人认为“前端MVC已死”
 
-###### 网络神图
+<br >
+
+#### 网络神图
 
 <img src="https://qiniu-app.qtshe.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_52e07466-9900-4260-9357-3fb8f266231b.png" alt="企业微信截图_52e07466-9900-4260-9357-3fb8f266231b" style="zoom:80%;" />
 
-
+<br >
 
 相对于MVC架构：Flux中的Store包含了应用的所有数据，Dispatcher替换了原来的Controller，当Action触发时，决定了Store如何更新。当Store变化后，View同时被更新，还可以生成一个由Dispatcher处理的Action。这确保了数据在系统组件间单向流动。当系统有多个Store和View时，仍可视为只有一个Store和一个View，因为数据只朝一个方向流动，并且不同的Store和View之间不会直接影响彼此
 
 其实Flux并不是什么新鲜事物，其背后还是经典的MVC思想，但是实现方式上有所不同。Flux的核心是“组件化+单向数据流“，下面逐一进行介绍
 
+<br >
 
+<br >
 
-#### Flux vs MV\*
+## Flux vs MV\*
 
 Flux被认为是MVC模式的一种替代方案。在Flux的文档中将其解释为“一种使用单向数据流而不是MVC”的应用架构模式，将Flux和MVC相比，需要理解下面三点：
 
@@ -36,7 +44,9 @@ Flux被认为是MVC模式的一种替代方案。在Flux的文档中将其解释
 2. Flux并不会比MV*要简单，MVC不具有可扩展性
 3. 相较于MV*，Flux模式中的代码更具有可预测性
 
-###### MVC
+<br >
+
+#### MVC
 
 ![企业微信截图_b3dbe029-433f-4dd6-8bd3-a3969ce73e8e](https://qiniu-app.qtshe.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_b3dbe029-433f-4dd6-8bd3-a3969ce73e8e.png)
 
@@ -49,13 +59,13 @@ MVC比较明显的缺点：
 - View依赖特定的Model，无法组件化
 - View和Controller紧耦合，如果脱离Controller，View难以独立应用（功能太少）
 
+<br >
 
-
-###### MVP
+#### MVP
 
 ![企业微信截图_fad8f1e7-b053-41ac-be17-e2296a38c3c4](https://qiniu-app.qtshe.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_fad8f1e7-b053-41ac-be17-e2296a38c3c4.png)
 
-
+<br >
 
 为了克服MVC的上述缺点，MVP应运而生。在MVP中，View和Model是没有直接联系的，所有操作都必须通过Presenter进行中转。View向Presenter发起调用请求，Presenter修改Model，Model修改完成后通知Presenter，Presenter再调用View的相关接口刷新界面，这样，View就不需要监听具体Model的变化了，只需要提供接口给Presenter调用就可以了
 
@@ -64,9 +74,9 @@ MVP具有以下优点：
 - View可以组件化，不需要了解业务逻辑，只需提供接口给Presenter
 - 便于测试：只需要给Presenter mock一个View，实现View的接口即可
 
+<br >
 
-
-###### MVVM
+#### MVVM
 
 ![企业微信截图_d9ad0d4b-2f80-44af-9170-b718b231e6f3](https://qiniu-app.qtshe.com/2f11a8c90s.png)
 
@@ -74,9 +84,9 @@ MVP具有以下优点：
 
 双向数据流极大地简化了开发者的工作，但是诟病也随之而来。由于绑定的随意性，某个View对Model进行的修改有可能会对其他的View造成“连锁反应”，再加上各种异步回调，给代码调试造成了很大的困难，往往难以定位数据到底是被谁修改掉的。用专业一点的术语来讲，代码的“**可预测性**”非常差。因此，为了提高可预测性，很多人主张回归到“单向数据流”模式，其中的典型代表就是facebook的Flux框架
 
+<br >
 
-
-###### Flux工作流程说明
+#### Flux工作流程说明
 
 <img src="https://qiniu-app.qtshe.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_b8c6a5da-fd88-4725-9795-8e7d09aa4728.png" alt="企业微信截图_b8c6a5da-fd88-4725-9795-8e7d09aa4728" style="zoom:67%;" />
 
@@ -93,18 +103,22 @@ Flux中的派发器确保了系统中一次只会有一个action流。如果一�
 
 派发器也能让开发者指明回调函数执行的顺序，其中会使用`waitFor`方法来告诉回调函数依次执行
 
+<br >
 
+<br >
 
-#### Flux解析
+## Flux解析
 
-###### 基本流程
+#### 基本流程
 
 1. 用户触发视图事件
 2. 事件中通过调用（直接或者间接） dispatcher 实例的 dispatch 方法触发一个 action 事件
 3. action 的触发会导致 store 中进行数据变更
 4. 监听 store 中数据的 view 获得更新
 
-###### 原则
+<br >
+
+#### 原则
 
 1. 数据在 Flux 应用中的流向是单一方向的 Action -> Dispatcher -> Store -> View
 
@@ -125,9 +139,11 @@ Flux中的派发器确保了系统中一次只会有一个action流。如果一�
    - 只有在 dispatch 可以触发 data 的更新
    - 按照页面分离，也就是每个页面创建一个 Store
 
+<br >
 
+<br >
 
-#### Flux的难点
+## Flux的难点
 
 没有哪一种模式是完美无缺的，Flux也一样。一般来说，它有以下几个缺点：
 
@@ -143,9 +159,11 @@ Flux中的派发器确保了系统中一次只会有一个action流。如果一�
 
 在Flux中，组件开始依赖ActionCreators以及Store，以及其他的依赖项目。这将使得编写单元测试异常复杂。如果你在应用种将Store的交互严格限制在顶级的”controller”上，那么你可以对子组件进行单元测试而无需担心Stores。如果你要测试那些需要发送Actions以及监[听Stores的组件，我们需要模拟一些Store种方法，或者模拟Actions和Stores用于接收数据的API
 
+<br >
 
+<br >
 
-#### 补充
+## 补充
 
 * 简述Flux流程：当用户在View上发生交互行为时，Dispatcher使用dispatch方法触发一个action（它包含了actionType和要传递的数据），在整个程序的总调度中心Dispatcher里面注册了各种类型的action类型，在对应的类型中，store实现了“订阅-发布”功能对这个action进行响应，同时对数据做相应的处理。数据处理完成后，触发一个自定义的change事件。View层在初始化完成时注册这个change事件，当接收到store的广播后，view层响应这个事件并重新渲染UI界面
 
