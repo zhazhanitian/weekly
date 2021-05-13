@@ -1,4 +1,4 @@
-##### 前言
+### 前言
 
 composition api（组合api） 和 optional api（可选api） 两种组织代码的方式，在 vue3 各种相关的介绍文里已经了解到不少了，它们可以同时存在，并非强制只能使用哪一种，但组合api两大优势的确让开发者们更倾向于使用它来替代可选api
 
@@ -9,9 +9,9 @@ composition api（组合api） 和 optional api（可选api） 两种组织代�
 
 但是，react 是 all in js 的编码方式，所以只要我们敢想、敢做，一切优秀的编程模型都可以吸纳进来，接下来用原生 hook 和 concent 的 setup 并通过实例来分析处理 hook 的痛点问题
 
+<br >
 
-
-##### react hook
+### react hook
 
 在此先设计一个传统的计数器，要求如下
 
@@ -25,9 +25,9 @@ composition api（组合api） 和 optional api（可选api） 两种组织代�
 
 为了完成此需求，需要用到以下5把钩子
 
+<br >
 
-
-##### useState
+### useState
 
 过完需求，需要用到第一把钩子 useState 来做组件首次渲染的状态初始化
 
@@ -38,9 +38,9 @@ function Counter() {
 }
 ```
 
+<br >
 
-
-##### useCallback
+### useCallback
 
 如需使用缓存函数，则要用到第二把钩子 useCallback，此处使用这把钩子来定义加减函数
 
@@ -49,9 +49,9 @@ const addNum = useCallback(() => setNum(num + 1), [num])
 const addNumBig = useCallback(() => setBigNum(bigNum + 100), [bigNum])
 ```
 
+<br >
 
-
-##### useMemo
+### useMemo
 
 如需用到缓存的计算结果，则要用到第三把钩子 useMemo，此处使用这把钩子来计算按钮颜色
 
@@ -64,9 +64,9 @@ const bigNumBtnColor = useMemo(() => {
 }, [bigNum])
 ```
 
+<br >
 
-
-##### useEffect
+### useEffect
 
 处理函数的副作用则需用到第四把钩子 useEffect，此处用来处理一下两个需求
 
@@ -84,9 +84,9 @@ useEffect(() => {
 }, [])
 ```
 
+<br >
 
-
-##### useRef
+### useRef
 
 上面使用清理函数的 useEffect 写法在IDE是会被警告的，因为内部使用了 num, bigNum 变量（不写依赖会陷入闭包旧值陷阱），所以要求声明依赖
 
@@ -113,9 +113,9 @@ useEffect(() => {
 }, [ref])
 ```
 
+<br >
 
-
-##### 完整的计数器
+### 完整的计数器
 
 使完5把钩子，我们完整的组件如下
 
@@ -157,9 +157,9 @@ function useMyCounter(){
 }
 ```
 
+<br >
 
-
-##### concent setup
+### concent setup
 
 hook 函数在每一轮渲染期间一定是需要全部重新执行一遍的，所以不可避免的在每一轮渲染期间都会产生大量的临时闭包函数，如果我们能省掉他们，的确能帮 gc 减轻一些回收压力的，现在我们来看看使用 setup 改造完毕后的 Counter 会是什么样子
 
@@ -181,9 +181,9 @@ function setup(ctx) { // 渲染上下文
 }
 ```
 
+<br >
 
-
-##### initState
+### initState
 
 initState 用于初始化状态，替代了 useState，当我们的组件状态较大时依然可以不用考虑如何切分状态粒度
 
@@ -197,9 +197,9 @@ initState({ num: 6, bigNum: 120 })
 initState(() => ({ num: 6, bigNum: 120 }))
 ```
 
+<br >
 
-
-##### computed
+### computed
 
 computed 用于定义计算函数，从参数列表里解构时就确定了计算的输入依赖，相比 useMemo，更直接与优雅
 
@@ -217,9 +217,9 @@ computed({
 })
 ```
 
+<br >
 
-
-##### effect
+### effect
 
 effect 的用法和 useEffect 是一模一样的，区别仅仅是依赖数组仅传入 key 名称即可，同时 effect 内部将函数组件和类组件的生命周期进行了统一封装，用户可以将业务不做任何修改便迁移到类组件身上
 
@@ -236,9 +236,9 @@ effect(() => {
 }, [])
 ```
 
+<br >
 
-
-##### setState
+### setState
 
 用于修改状态，我们在 setup 内部基于 setState 定义完方法后，然后返回即可，接着我们可以在任意使用此 setup 的组件里，通过 ctx.settings 拿到这些方法句柄便可调用
 
@@ -252,9 +252,9 @@ function setup(ctx) { // 渲染上下文
 }
 ```
 
+<br >
 
-
-##### 完整的Setup Counter
+### 完整的Setup Counter
 
 基于上述几个api，我们最终的Counter的逻辑代码如下
 
@@ -314,9 +314,9 @@ class NewClsCounter extends Component {
 }
 ```
 
+<br >
 
-
-##### 总结 
+### 总结 
 
 对比原生 hook， setup 将业务逻辑固定在只会被执行一次的函数内部，提供了更友好的 api，且同时完美兼容类组件与函数组件，让用户可以逃离 hook 的使用规则烦恼，而不是将这些约束学习障碍转嫁给用户， 同时对gc也更加友好了，可能大都已默认 hook 是 react 的一个重要发明，但是其实它不是针对用户的，而是针对框架的，用户其实是不需要了解那些烧脑的细节与规则的，而对于concent用户来说，其实只需一个钩子开启一个传送门，即可在另一个空间内部实现所有业务逻辑，而且这些逻辑同样可以复用到类组件上
 
