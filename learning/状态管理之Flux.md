@@ -22,7 +22,7 @@
 
 #### 网络神图
 
-<img src="https://qiniu-image.qtshe.com/T8K4K0PPJ93.png" style="zoom:80%;" />
+<img src="https://qiniu-image.qtshe.com/T8K4K0PPJ93.png" width="500px;" />
 
 <br >
 
