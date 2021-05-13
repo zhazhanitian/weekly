@@ -1,4 +1,4 @@
-#### setState的同步和异步
+## setState的同步和异步
 
 为什么使用setState
 
@@ -14,9 +14,9 @@
 
     <img src="https://qiniu-image.qtshe.com/1E4DB9D4C043ACF6.png" style="zoom:100%;float:left;border-radius: 8px;" />
 
+<br >
 
-
-##### setState异步更新
+#### setState异步更新
 
 setState是异步更新的
 
@@ -31,9 +31,9 @@ setState是异步更新的
 * 如果同步更新了 state, 但还没有执行 render 函数, 那么state和props不能保持同步
   * state和props不能保持一致性, 会在开发中产生很多的问题
 
+<br >
 
-
-##### 如何获取异步的结果
+#### 如何获取异步的结果
 
 如何获取 setState 异步更新state后的值?
 
@@ -47,9 +47,9 @@ setState是异步更新的
 
   <img src="https://qiniu-image.qtshe.com/BED2FDA3E83.png" style="zoom:100%;float:left;border-radius: 8px;" />
 
+<br >
 
-
-##### setState一定是异步的吗?
+#### setState一定是异步的吗?
 
 其实可以分成两种情况
 
@@ -66,19 +66,19 @@ setState是异步更新的
 
   <img src="https://qiniu-image.qtshe.com/27BF99353663.png" style="zoom:81%;float:left;border-radius: 8px;" />
 
+<br >
 
-
-##### 源码
+#### 源码
 
 <img src="https://qiniu-image.qtshe.com/4958365A7C1.png" style="zoom:47%;float:left;border-radius: 8px;" />
 
+<br >
 
+<br >
 
+## setState的合并
 
-
-#### setState的合并
-
-##### 数据的合并
+#### 数据的合并
 
 通过setState去修改message，是不会对其他 state 中的数据产生影响的
 
@@ -86,25 +86,25 @@ setState是异步更新的
 
 <img src="https://qiniu-image.qtshe.com/25F570F32C90.png" style="zoom:43%;float:left;border-radius: 8px;" />
 
+<br >
 
-
-##### 多个state的合并
+#### 多个state的合并
 
 * 当我们的多次调用了 setState, 只会生效最后一次state
 
   <img src="https://qiniu-image.qtshe.com/9476711757DE08E.png" style="zoom:70%;float:left;border-radius: 8px;" />
 
-
+<br >
 
 * setState合并时进行累加: 给setState传递函数, 使用前一次state中的值
 
   <img src="https://qiniu-image.qtshe.com/DCBCC3876017E.png" style="zoom:100%;float:left;border-radius: 8px;" />
 
+<br >
 
+<br >
 
-
-
-#### React 更新机制
+## React 更新机制
 
 我们在前面已经学习React的渲染流程
 
@@ -114,9 +114,9 @@ setState是异步更新的
 
 <img src="https://qiniu-image.qtshe.com/51FB654594F.png" style="zoom:100%;float:left;border-radius: 8px;" />
 
+<br >
 
-
-##### React 更新流程
+#### React 更新流程
 
 * React在 props 或 state 发生改变时，会调用 React 的 render 方法，会创建一颗不同的树
 
@@ -136,9 +136,9 @@ setState是异步更新的
 
   <img src="https://qiniu-image.qtshe.com/F60B121BA12A31C.png" style="zoom:80%;float:left;border-radius: 8px;" />
 
+<br >
 
-
-##### 优化场景
+#### 优化场景
 
 1. 当节点为不同的元素，React会拆卸原有的树，并且建立起新的树
 
@@ -154,7 +154,7 @@ setState是异步更新的
 
    <img src="https://qiniu-image.qtshe.com/53BBB08320.png" style="zoom:100%;float:left;border-radius: 8px;" />
 
-
+<br >
 
 2. 对比同一类型的元素
 
@@ -178,7 +178,7 @@ setState是异步更新的
    * 组件会保持不变，React会更新该组件的props，并且调用componentWillReceiveProps() 和 componentWillUpdate() 方法
    * 下一步，调用 render() 方法，diff 算法将在之前的结果以及新的结果中进行递归
 
-
+<br >
 
 3. 对子节点进行递归
 
@@ -200,13 +200,13 @@ setState是异步更新的
 
    这种低效的比较方式会带来一定的性能问题
 
+<br >
 
+<br >
 
+## React 性能优化
 
-
-#### React 性能优化
-
-##### key的优化
+#### key的优化
 
 我们在前面遍历列表时，总是会提示一个警告，让我们加入一个key属性
 
@@ -232,9 +232,9 @@ setState是异步更新的
 > * key不要使用随机数（随机数在下一次render时，会重新生成一个数字）
 > * 使用index作为key，对性能是没有优化的
 
+<br >
 
-
-##### render函数被调用
+#### render函数被调用
 
 我们使用之前的一个嵌套案例，在App中，我们增加了一个计数器的代码，当点击 +1 时，会重新调用 App 的 render 函数
 
@@ -246,9 +246,9 @@ setState是异步更新的
 
 如何来控制 render 方法是否被调用呢？
 
+<br >
 
-
-##### shouldComponentUpdate
+#### shouldComponentUpdate
 
 React给我们提供了一个生命周期方法 shouldComponentUpdate（很多时候，我们简称为SCU），这个方法接受参数，并且需要有返回值；主要作用是：控制当前类组件对象是否调用render方法
 
@@ -278,9 +278,9 @@ shouldComponentUpdate(nextProps, nextState) {
 }
 ```
 
+<br >
 
-
-##### PureComponent
+#### PureComponent
 
 如果所有的类，我们都需要手动来实现 shouldComponentUpdate， 那么会给我们开发者增加非常多的工作量，我们设想一下在shouldComponentUpdate中的各种判断目的是什么？props 或者 state 中数据是否发生了改变，来决定shouldComponentUpdate返回 true 或 false
 
@@ -294,19 +294,19 @@ shouldComponentUpdate(nextProps, nextState) {
 
 <img src="https://qiniu-image.qtshe.com/FA6F9FFD9DA.png" style="zoom:60%;float:left;border-radius: 8px;" />
 
+<br >
 
-
-##### shallowEqual方法
+#### shallowEqual方法
 
 这个方法中，调用 !shallowEqual(oldProps, newProps) || !shallowEqual(oldState, newState)，这个 shallowEqual 就是进行浅层比较
 
 <img src="https://qiniu-image.qtshe.com/A1375CB6F1FFA.png" style="zoom:60%;float:left;border-radius: 8px;" />
 
+<br >
 
+<br >
 
-
-
-#### 高阶组件memo
+## 高阶组件memo
 
 函数式组件如何解决render: 在没有依赖 state 或 props 但却重新渲染 render 问题
 
@@ -320,49 +320,11 @@ shouldComponentUpdate(nextProps, nextState) {
 
 <img src="https://qiniu-image.qtshe.com/00F4DCF900047.png" style="zoom:40%;float:left;border-radius: 8px;" />
 
+<br >
 
+<br >
 
-
-
-#### React知识点总结脑图
+## React知识点总结脑图
 
 <img src="https://qiniu-image.qtshe.com/0C06D6B46C4E.png" style="zoom:100%;float:left;" />
-
-
-
- style="zoom:100%;float:left;border-radius: 8px;"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
