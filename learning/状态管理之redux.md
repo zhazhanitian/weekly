@@ -1,4 +1,4 @@
-#### 背景
+## 背景
 
 > 本节内容相对粗浅，更多具体详细内容及具体实现需要到官网了解：http://cn.redux.js.org/
 
@@ -15,17 +15,19 @@
 
 可以看出Flux还是有些不足，而起Flux更注重理论，即其官网描述其只是一种开发模式，并非一个框架，续之，在Flux后，为了更好的实现MVC，Redux模式出现
 
+<br >
 
+<br >
 
-#### Redux
+## Redux
 
-###### 简介
+#### 简介
 
 不同于 Flux ，Redux 不再有 dispatcher 的概念（Store已经集成了dispatch方法）。其次它依赖纯函数来替代事件处理器（即原来Flux中Dispatcher.register((action) 注册逻辑处理这块），这个纯函数叫做Reducer。另外使用到了一个新概念 context ，在React 组件间，数据是通过 props 属性由上向下（由父及子）进行传递的，当遇到多个层级多个组件间共享一个props，这种树形的由上而下的传参方式就显得过于繁琐，context 便很巧妙的解决了这个问题，参数只需从树顶点设置一次，便可在其所有枝节点都能共享到
 
+<br >
 
-
-###### 基本概念
+#### 基本概念
 
 我们把Flux看做一个框架的理念的话，Redux是Flux的一种实现
 Flux的基本原则是“单向数据流”，Redux在此基础上强调三个基本原则：
@@ -49,9 +51,9 @@ Flux的基本原则是“单向数据流”，Redux在此基础上强调三个�
    * reducer（state，action）
      第一个参数state是当前的状态，第二个参数action是接收到的action对象，而reducer函数要做的事情，就是根据state和action的值产生一个新的对象返回，注意reducer必须是一个纯函数，也就是说函数的返回结果必须完全由参数state和action决定，而且不产生任何副作用，也不能修改参数state和action对象
 
+<br >
 
-
-###### 流程
+#### 流程
 
 ![image-20200228210701015](https://qiniu-app.qtshe.com/image-20200228210701015.png)
 
@@ -73,9 +75,9 @@ Flux的基本原则是“单向数据流”，Redux在此基础上强调三个�
 
 所以它是一个单向的数据流动循环 store -> view -> action -> store
 
+<br >
 
-
-###### 关键词解析
+#### 关键词解析
 
 * Store 就是保存数据的地方，你可以把它看成一个容器，整个应用只能有一个 Store
   Redux 提供createStore这个函数，用来生成 Store
