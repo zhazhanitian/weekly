@@ -326,5 +326,5 @@ shouldComponentUpdate(nextProps, nextState) {
 
 ## React知识点总结脑图
 
-<img src="https://qiniu-image.qtshe.com/0C06D6B46C4E.png" style="zoom:100%;float:left;" />
+<img src="https://qiniu-image.qtshe.com/0C06D6B46C4E.png" width="100%" style="float:left;" />
 
