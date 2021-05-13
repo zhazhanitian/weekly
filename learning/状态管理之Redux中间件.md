@@ -1,4 +1,4 @@
-#### 前言
+## 前言
 
 Flux的出现，帮前端开发人员解决了一些问题的同时，基于 Flux 也有一些问题，Flux 当中通常有多个 Store， 分别监听比较麻烦， 跨 Store 操作还有同步顺序，挺烦的，然后 Redux 出来了，首先是很配合作者之前的 react-hot-loader 做热替换， 因为 Store 变成了一个， 概念上明确了很多， 然后提供了一些方案可以将数据注入到深度嵌套的组件当中，不需要一层一层重复传递回掉函数
 
@@ -12,33 +12,33 @@ Flux的出现，帮前端开发人员解决了一些问题的同时，基于 Flu
 
 这里就需要用到Redux中间件来协助我们解决问题了
 
+<br >
 
+<br >
 
+## 回顾redux
 
-
-#### 回顾redux
-
-###### redux基本架构图
+#### redux基本架构图
 
 ![](https://qiniu-app.qtshe.com/1583490655614.jpg)
 
+<br >
 
-
-###### dispatch函数
+#### dispatch函数
 
 <img src="https://qiniu-app.qtshe.com/1583490771200.jpg" style="zoom:85%;" />
 
+<br >
 
-
-###### With Redux
+#### With Redux
 
 <img src="https://qiniu-app.qtshe.com/D4E014F5-45D4-412D-8EC7-94919FE1CBEA.png" style="zoom:40%;" />
 
+<br >
 
+<br >
 
-
-
-#### 中间件的概念
+## 中间件的概念
 
 redux是有流程的，那么，我们该把这个异步操作放在哪个环节比较合适呢
 
@@ -66,50 +66,50 @@ store.dispatch = function(action) {
 
 这是中间件的大致雏形，当然真正的中间件要比这么复杂多了
 
+<br >
 
+<br >
 
-
-
-#### 中间件洋葱模型
+## 中间件洋葱模型
 
 当用户调用dispatch时，首先执行mid1中间件，在mid1中调用next执行mid2中间件，依次执行，最终调用dispatch，dispatch调用结束后，依次执行剩余中间件代码
 
 <img src="https://qiniu-app.qtshe.com/1583492847357.jpg" style="zoom:50%;" />
 
+<br >
 
+<br >
 
-
-
-#### Redux中间件机制概念
+## Redux中间件机制概念
 
 Redux本身就提供了非常强大的数据流管理功能，但这并不是它唯一的强大之处，它还提供了利用中间件来扩展自身功能，以满足用户的开发需求，首先我们来看中间件的定义
 
 > It provides a third-party extension point between dispatching an action, and the moment it reaches
 >  the reducer.
 
-
+<br >
 
 这是Dan Abramov 对middleware的描述。简单来讲，Redux middleware 提供了一个分类处理 action 的机会。在 middleware 中，我们可以检阅每一个流过的 action,并挑选出特定类型的 action 进行相应操作，以此来改变 action。这样说起来可能会有点抽象，我们直接来看图，这是在没有中间件情况下的 redux 的数据流:
 
 <img src="https://qiniu-app.qtshe.com/1583492074215.jpg" style="zoom:55%;" />
 
-
+<br >
 
 上面是很典型的一次 redux 的数据流的过程，但在增加了 middleware 后，我们就可以在这途中对 action 进行截获，并进行改变。且由于业务场景的多样性，单纯的修改 dispatch 和 reduce 人显然不能满足大家的需要，因此对 redux middleware 的设计是可以自由组合，自由插拔的插件机制。也正是由于这个机制，我们在使用 middleware 时，我们可以通过串联不同的 middleware 来满足日常的开发，每一个 middleware 都可以处理一个相对独立的业务需求且相互串联：
 
 <img src="https://qiniu-app.qtshe.com/1583492181497.jpg" style="zoom:55%;" />
 
-
+<br >
 
 如上图所示，派发给 redux Store 的 action 对象，会被 Store 上的多个中间件依次处理，如果把 action 和当前的 state 交给 reducer 处理的过程看做默认存在的中间件，那么其实所有的对 action 的处理都可以有中间件组成的。值得注意的是这些中间件会按照指定的顺序一次处理传入的 action，只有排在前面的中间件完成任务之后，后面的中间件才有机会继续处理 action，同样的，每个中间件都有自己的“熔断”处理,当它认为这个 action 不需要后面的中间件进行处理时，后面的中间件也就不能再对这个 action 进行处理了
 
 而不同的中间件之所以可以组合使用，是因为 Redux 要求所有的中间件必须提供统一的接口，每个中间件的尉氏县逻辑虽然不一样，但只要遵循统一的接口就能和redux以及其他的中间件对话了
 
+<br >
 
+<br >
 
-
-
-#### 理解Redux中间件机制
+## 理解Redux中间件机制
 
 由于redux 提供了 applyMiddleware 方法来加载 middleware，因此我们首先可以看一下 redux 中关于 applyMiddleware 的源码：
 
@@ -155,13 +155,13 @@ const doNothingMidddleware = (dispatch, getState) => next => action => next(acti
 
 在具有上面这些功能后，一个中间件就足够获取 Store 上的所有信息，也具有足够能力可用之数据的流转
 
+<br >
 
+<br >
 
+## Redux异步处理
 
-
-#### Redux异步处理
-
-###### redux-thunk
+#### redux-thunk
 
 直接看看最出名的中间件 redux-thunk 的实现
 
@@ -205,9 +205,9 @@ function getWeather(url, params) {
 
 尽管redux-thunk很简单，而且也很实用，但人总是有追求的，都追求着使用更加优雅的方法来实现redux异步流的控制，这就有了redux-promise
 
+<br >
 
-
-###### redux-promise
+#### redux-promise
 
 不同的中间件都有着自己的适用场景，react-thunk 比较适合于简单的API请求的场景，而 Promise 则更适合于输入输出操作，比较fetch函数返回的结果就是一个Promise对象
 
@@ -264,11 +264,11 @@ async function getWeather(url, params) {
 }
 ```
 
+<br >
 
+<br >
 
-
-
-#### redux-saga
+## redux-saga
 
 redux-saga是一个管理redux应用异步操作的中间件，用于代替 redux-thunk 的。它通过创建 Sagas 将所有异步操作逻辑存放在一个地方进行集中处理，以此将react中的同步操作与异步操作区分开来，以便于后期的管理与维护
 
