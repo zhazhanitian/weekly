@@ -1,14 +1,14 @@
-#### 前言
+### 前言
 
 前几天和一个朋友聊天的时候，聊到说他们公司的移动端业务需要在用户上传图片是由前端压缩图片大小，再上传到服务器，这样可以减少移动端上行流量，减少用户上传等待时长，优化用户体验
 
 然后想了想好像我们公司的图片上传接口并没有做大小限制，那岂不是我们产品的上传头像等地方就会存在这个问题，上传大一点的图片等时候处于持续等待，基此去了解一下前端压缩是怎么搞的，后续加入到我们自己的项目里面去
 
+<br >
 
+<br >
 
-
-
-#### 关系与转化
+### 关系与转化
 
 JavaScript 操作压缩图片原理不难，已有成熟 API，然而在实际输出压缩后结果却总有意外，有些图片竟会越压缩越大，加之终端（手机）类型众多，有些手机压缩图片甚至变黑
 
@@ -25,15 +25,17 @@ JavaScript 操作压缩图片原理不难，已有成熟 API，然而在实际�
 
 当然，两者之间的转化方法需要自己封装一下，后续会逐一介绍到
 
+<br >
 
+<br >
 
-
-
-#### 方法介绍
+### 方法介绍
 
 接下来将按照转化关系图中的转化方法逐一实现
 
-##### file2DataUrl(file, callback)
+<br >
+
+#### file2DataUrl(file, callback)
 
 用户通过页面标签 `<input type="file" />` 上传的本地图片直接转化 data URL 字符串形式。可以使用 FileReader 文件读取构造函数。FileReader 对象允许 Web 应用程序异步读取存储在计算机上的文件（或原始数据缓冲区）的内容，使用 File 或 Blob 对象指定要读取的文件或数据。该实例方法 readAsDataURL 读取文件内容并转化成 base64 字符串。在读取完后，在实例属性 result 上可获取文件内容
 
@@ -57,9 +59,9 @@ data:<mediatype>,<data>
 
 data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAgAElEQVR4XuxdB5g
 
+<br >
 
-
-##### file2Image(file, callback)
+#### file2Image(file, callback)
 
 若想将用户通过本地上传的图片放入缓存并 img 标签显示出来，除了可以利用以上方法转化成的 base64 字符串作为图片 src，还可以直接用 URL 对象，引用保存在 File 和 Blob 中数据的 URL。使用对象 URL 的好处是可以不必把文件内容读取到 JavaScript 中 而直接使用文件内容。为此，只要在需要文件内容的地方提供对象 URL 即可
 
@@ -87,9 +89,9 @@ function file2Image(file, callback) {
 
 需要注意的是，要创建对象 URL，可以使用 window.URL.createObjectURL() 方法，并传入 File 或 Blob 对象。如果不再需要相应数据，最好释放它占用的内容。但只要有代码在引用对象 URL，内存就不会释放。要手工释放内存，可以把对象 URL 传给 window.revokeObjectURL()
 
+<br >
 
-
-##### url2Image(url, callback)
+#### url2Image(url, callback)
 
 通过图片链接（url）获取图片 Image 对象，由于图片加载是异步的，因此放到回调函数 callback 回传获取到的 Image 对象
 
@@ -103,9 +105,9 @@ function url2Image(url, callback) {
 }
 ```
 
+<br >
 
-
-##### image2Canvas(image)
+#### image2Canvas(image)
 
 利用 drawImage() 方法将 Image 对象绘画在 Canvas 对象上
 
@@ -139,9 +141,9 @@ function image2Canvas(image) {
 }
 ```
 
+<br >
 
-
-##### canvas2DataUrl(canvas, quality, type)
+#### canvas2DataUrl(canvas, quality, type)
 
 HTMLCanvasElement 对象有 toDataURL(type, encoderOptions) 方法，返回一个包含图片展示的 data URL 。同时可以指定输出格式和质量
 
@@ -156,9 +158,9 @@ function canvas2DataUrl(canvas, quality, type) {
 }
 ```
 
+<br >
 
-
-##### dataUrl2Image(dataUrl,  callback)
+#### dataUrl2Image(dataUrl,  callback)
 
 图片链接也可以是 base64 字符串，直接赋值给 Image 对象 src 即可
 
@@ -172,9 +174,9 @@ function dataUrl2Image(dataUrl, callback) {
 }
 ```
 
+<br >
 
-
-##### dataUrl2Blob(dataUrl,  type)
+#### dataUrl2Blob(dataUrl,  type)
 
 将 data URL 字符串转化为 Blob 对象。主要思路是：先将 data URL 数据（data） 部分提取出来，用 atob 对经过 base64 编码的字符串进行解码，再转化成 Unicode 编码，存储在Uint8Array（8位无符号整型数组，每个元素是一个字节） 类型数组，最终转化成 Blob 对象
 
@@ -193,9 +195,9 @@ function dataUrl2Blob(dataUrl, type) {
 }
 ```
 
+<br >
 
-
-##### canvas2Blob(canvas, callback, quality, type)
+#### canvas2Blob(canvas, callback, quality, type)
 
 HTMLCanvasElement 有 toBlob(callback, [type], [encoderOptions]) 方法创造 Blob 对象，用以展示 canvas 上的图片；这个图片文件可以被缓存或保存到本地，由用户代理端自行决定。第二个参数指定图片格式，如不特别指明，图片的类型默认为 image/png，分辨率为 96dpi。第三个参数用于针对image/jpeg 格式的图片进行输出图片的质量设置
 
@@ -220,9 +222,9 @@ if (!HTMLCanvasElement.prototype.toBlob) {
 }
 ```
 
+<br >
 
-
-##### blob2DataUrl(blob, callback)
+#### blob2DataUrl(blob, callback)
 
 将 Blob 对象转化成 data URL 数据，由于 FileReader 的实例 readAsDataURL 方法不仅支持读取文件，还支持读取 Blob 对象数据，这里复用上面 file2DataUrl 方法即可
 
@@ -232,9 +234,9 @@ function blob2DataUrl(blob, callback) {
 }
 ```
 
+<br >
 
-
-##### blob2Image(blob, callback)
+#### blob2Image(blob, callback)
 
 将 Blob 对象转化成 Image 对象，可通过 URL 对象引用文件，也支持引用 Blob 这样的类文件对象，同样，这里复用上面 file2Image 方法即可
 
@@ -244,9 +246,9 @@ function blob2Image(blob, callback) {
 }
 ```
 
+<br >
 
-
-##### upload(url, file, callback)
+#### upload(url, file, callback)
 
 上传图片（已压缩），可以使用 FormData 传入文件对象，通过 XHR 直接把文件上传到服务器
 
@@ -285,11 +287,11 @@ function upload(url, file) {
 }
 ```
 
+<br >
 
+<br >
 
-
-
-#### 实现简易图片压缩
+### 实现简易图片压缩
 
 在熟悉以上各种图片转化方法的具体实现，将它们封装在一个公用对象 util 里，再结合压缩转化流程图，就可以简单实现图片压缩了
 
@@ -424,11 +426,11 @@ fileEle.addEventListener('change', function () {
 - 有些情况，其他格式转化成 png 格式也会出现“不减反增”现象
 - 大尺寸 png 格式图片在一些手机上，压缩后出现“黑屏”现象
 
+<br >
 
+<br >
 
-
-
-#### 改进版图片压缩
+### 改进版图片压缩
 
 压缩输出图片寸尺固定为原始图片尺寸大小，而实际可能需要控制输出图片尺寸，同时达到尺寸也被压缩目的
 
