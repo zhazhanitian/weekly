@@ -1,4 +1,5 @@
 # weekly
+* [前端安全_泛洪攻击.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8_%E6%B3%9B%E6%B4%AA%E6%94%BB%E5%87%BB.md)
 * [骨架屏生成方案原理.md](https://github.com/zhazhanitian/weekly/blob/main/learning/骨架屏生成方案原理.md)
 * [Axios的核心功能原理.md](https://github.com/zhazhanitian/weekly/blob/main/learning/Axios的核心功能原理.md)
 * [Virtual DOM常识分析.md](https://github.com/zhazhanitian/weekly/blob/main/learning/Virtual%20DOM常识分析.md)
