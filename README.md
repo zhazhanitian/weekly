@@ -1,4 +1,5 @@
 # weekly
+* [HTTP/2对比HTTP/1.1.md](https://github.com/zhazhanitian/weekly/blob/main/learning/HTTP:2%E5%AF%B9%E6%AF%94HTTP:1.1.md)
 * [HTTP 与 TCP 协议的联系与区别.md](https://github.com/zhazhanitian/weekly/blob/main/learning/HTTP%20%E4%B8%8E%20TCP%20%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%81%94%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB.md)
 * [前端安全_泛洪攻击.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8_%E6%B3%9B%E6%B4%AA%E6%94%BB%E5%87%BB.md)
 * [骨架屏生成方案原理.md](https://github.com/zhazhanitian/weekly/blob/main/learning/骨架屏生成方案原理.md)
