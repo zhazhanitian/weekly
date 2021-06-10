@@ -603,6 +603,47 @@ git push -u origin master -f –强制提交
 
 <br >
 
+### 需求21
+
+#### 描述
+
+​	切换远程仓库地址
+
+#### 步骤
+
+​    进入到项目根目录，输入如下指令：
+
+```python
+# 方式一：直接修改仓库地址
+git remote set-url origin url
+
+# 方式二：删除本地远程仓库地址，然后添加新的仓库地址
+git remote rm origin
+git remote add origin url
+
+# 方式三：修改配置文件
+# 每个仓库在初始化时，都会有一个 .git 的隐藏目录，其中有个 config 文件，内容如下
+# 直接将 [remote "origin"] 下的 url 地址替换即可
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "origin"]
+	url = https://github.com/zhazhanitian/weekly.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+	remote = origin
+	merge = refs/heads/main
+
+# 修改完成查看远程仓库地址
+git remote -v
+```
+
+<br >
+
 <br >
 
 ### 问题1
