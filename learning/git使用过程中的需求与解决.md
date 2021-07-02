@@ -693,6 +693,47 @@ git add .
 
 <br >
 
+### 问题3
+
+#### 描述
+
+在执行删除远程分支的时候报错如下
+
+```nginx
+git push origin --delete digitalEconomy
+
+# error: unable to delete 'digitalEconomy': remote ref does not exist
+# error: failed to push some refs to '**/digital_reform/digital_mobile.git'
+```
+
+#### 原因
+
+git pull 的时候会执行 git fetch 更新本地 origin 镜像，同时通过 git merge 合并代码
+但是并不会同步镜像的分支信息。所以导致分支信息的同步滞后
+
+#### 解决方案
+
+```nginx
+# 查看remote地址、远程分支和本地分支与之相对应关系等信息。
+git remote show origin
+
+# 按照提示更新镜像，尾后跟的是仓库远程地址
+git remote prune 'xx/digital_reform/digital_mobile.git'
+```
+
+结论：没啥效果
+
+```nginx
+# 更新远程镜像到本地
+git fetch --prune origin
+
+# 删除成功
+From http://10.27.167.84:8666/digital_reform/digital_mobile
+- [deleted]         (none)     -> origin/digitalEconomy
+```
+
+<br >
+
 ### 补充
 
 #### 知识1
