@@ -1,5 +1,7 @@
 # weekly
+
 * [HTTP/2对比HTTP/1.1.md](https://github.com/zhazhanitian/weekly/blob/main/learning/HTTP:2%E5%AF%B9%E6%AF%94HTTP:1.1.md)
+* [为什么说HTTPS比HTTP安全.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4HTTPS%E6%AF%94HTTP%E5%AE%89%E5%85%A8.md)
 * [HTTP 与 TCP 协议的联系与区别.md](https://github.com/zhazhanitian/weekly/blob/main/learning/HTTP%20%E4%B8%8E%20TCP%20%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%81%94%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB.md)
 * [HTTP3 新特性及UDP协议](https://github.com/zhazhanitian/weekly/blob/main/learning/HTTP3%20%E6%96%B0%E7%89%B9%E6%80%A7%E5%8F%8AUDP%E5%8D%8F%E8%AE%AE.md)
 * [为什么HTTP3.0使用UDP协议](https://github.com/zhazhanitian/weekly/blob/main/learning/%E4%B8%BA%E4%BB%80%E4%B9%88HTTP3.0%E4%BD%BF%E7%94%A8UDP%E5%8D%8F%E8%AE%AE.md)
