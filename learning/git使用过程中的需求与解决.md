@@ -1,10 +1,19 @@
-### 序言
+## 序言
 
-　　在git使用过程中发现指令实在太多，就算记忆后不长用的话很快也会忘记掉，所以编写本文的初衷是为了记录在使用git指令的过程中所遇到的需求与解决方法，毕竟使用git的需求也就那么一些，范围不大，所以可以将需求与解决方法记录下来，下次使用时遇到相同需求如果忘记了也可以得到快速解决
+在git使用过程中发现指令实在太多，就算记忆后不长用的话很快也会忘记掉，所以编写本文的初衷是为了记录在使用git指令的过程中所遇到的需求与解决方法，毕竟使用git的需求也就那么一些，范围不大，所以可以将需求与解决方法记录下来，下次使用时遇到相同需求如果忘记了也可以得到快速解决
+
+这里主要分三块进行记录
+
+* [需求区](#需求区)
+* [问题区](#问题区)
+* [日常工作操作流程](#日常工作操作流程)
+* [扩展](#扩展)
 
 <br >
 
 <br >
+
+## <a id="需求区">需求区</a>
 
 ### 需求1
 
@@ -642,9 +651,47 @@ git remote add origin url
 git remote -v
 ```
 
-<br >
+<br />
 
-<br >
+### <a id="需求22">需求22</a>
+
+#### 描述
+
+在我们开发完成一块业务时，需要将自己的开发分支合并到 master 分支进行发布上线，这时最好就走 PR 模式，便于代码回退
+
+> PR 会将需要合并到 master 的分支上的所有提交合并为一个提交记录合并到 master 分支上，如果后续因为某种原因需要将本次合并的分支代码都回退掉，就会很方便
+
+#### 步骤
+
+* **GitLab**
+
+  <img src="https://qiniu-image.qtshe.com/0DEA837B85434.png" width="800px" style="float:left;" />
+
+  <br />
+
+  <img src="https://qiniu-image.qtshe.com/1DEA837B85434.png" width="800px" style="float:left;" />
+
+  <br />
+
+  <img src="https://qiniu-image.qtshe.com/2DEA837B85434.png" width="800px" style="float:left;" />
+
+  <br />
+
+* **GitHub**
+
+  <img src="https://qiniu-image.qtshe.com/2278B8A318EB4.png" width="800px" style="float:left;" />
+
+  <img src="https://qiniu-image.qtshe.com/18EC87083DB2E.png" width="800px" style="float:left;" />
+
+  <br />
+
+当然发起的合并申请可能会存在冲突代码，这时需要先关闭本次合并申请，将 master 分支代码合并到自己的开发分支后再次发起 PR
+
+<br />
+
+<br />
+
+## <a id="问题区">问题区</a>
 
 ### 问题1
 
@@ -673,7 +720,7 @@ git add .
 ...
 ```
 
-<br >
+<br />
 
 ### 问题2
 
@@ -691,7 +738,7 @@ git add .
 2. 按键盘左上角"Esc"
 3. 输入":wq",进行修改后保存退出,然后按回车键即可
 
-<br >
+<br />
 
 ### 问题3
 
@@ -721,7 +768,7 @@ git remote show origin
 git remote prune 'xx/digital_reform/digital_mobile.git'
 ```
 
-结论：没啥效果
+结论：没啥效果，再使用以下方式尝试解决
 
 ```nginx
 # 更新远程镜像到本地
@@ -732,9 +779,153 @@ From http://10.27.167.84:8666/digital_reform/digital_mobile
 - [deleted]         (none)     -> origin/digitalEconomy
 ```
 
-<br >
+结果：成功
 
-### 补充
+<br />
+
+<br />
+
+## <a id="日常工作操作流程">日常工作操作流程</a>
+
+### 新增项目
+
+#### 描述
+
+日常工作过程中难免需要我们创建新项目，并建立相应的 git 远程仓库，这里将流程一一记录一下
+
+#### 演示工具
+
+GitHub、Vue
+
+#### 步骤
+
+1. 创建 Vue 新项目
+
+   ```nginx
+   vue create verification-process
+   ```
+
+2. 进入项目，完成 git 初始化
+
+   ```nginx
+   cd verification-process
+   
+   git init
+   ```
+
+3. 创建远程仓库项目
+
+   <img src="https://qiniu-image.qtshe.com/AD56D6F0FFB81E.png" width="800px" style="float:left;" />
+
+   <br />
+
+4. 将本地项目于远程仓库建立关联
+
+   <img src="https://qiniu-image.qtshe.com/7DB08D0E2AEA8.png" width="800px" style="float:left;" />
+
+   ```nginx
+   # 用远程仓库获取的仓库地址进行建联
+   git remote add origin git@github.com:zhazhanitian/verification-process.git
+   
+   # 查看是否关联成功
+   git remote -v
+   
+   # 成功效果
+   origin	git@github.com:zhazhanitian/verification-process.git (fetch)
+   origin	git@github.com:zhazhanitian/verification-process.git (push)
+   ```
+
+<br />
+
+### 开发新业务
+
+#### 描述
+
+在已有项目中进行新业务开发时，需要新建分支，开发完成后进行合并操作
+
+#### 演示工具
+
+GitHub、Vue
+
+#### 步骤
+
+1. 从master分支新切分支（newBusiness）
+
+   ```nginx
+   git checkout -b newBusiness
+   ```
+
+   > 需要注意的是，如果你要开发的业务依赖于别人正在开发的业务，那么开发前需沟通好，划清业务范围，避免出现重复劳动以及大量代码冲突，可以选择在同一个分支进行开发或协商责任范围等方式
+
+2. 新增远程分支并与本地建立关联
+
+   ```nginx
+   git push --set-upstream origin newBusiness
+   ```
+
+3. 接着进行开发，但是过程中需要根据实际情况进行区分操作
+
+   如果属于多业务协作，比如你在自己的 newBusiness 分支开发业务，过程中 B 同学开发的业务合并到了 master 分支，这里就要进行判断
+
+   * 无牵扯
+
+     如果你开发的业务不依赖 B 同学开发的业务或 B 同学的代码和自己的完全不相关、无牵扯，那就切记不要把master 分支代码合并到自己的分支（如果合并到了自己的分支，后面对分支做 code review 的时候无法区分开那些是你写的业务代码）
+
+   * 有重叠
+
+     如果你开发的业务代码和 B 同学开发的业务代码有交际，那就选择恰当的实际将 master 分支合并到自己的分支上
+
+   ```nginx
+   # 开发过程中要保持良好的提交习惯，开发到某个节点时就进行一次提交，并简单明了的写一下提交日志，不要一天或几天才提交一次，尽可能避免多人合作时出现大面积冲突或重复劳作，操作命令如下
+   
+   # 先将自己的代码添加到暂存区
+   git add .
+   git commit -m "提交日志"
+   
+   # 拉取最新代码
+   git pull
+   
+   # 如果存在冲突，需要处理完冲突，再次进行提交
+   git commit -am "解决冲突"
+   git push
+   
+   # 如果不存在冲突，直接提交到远程
+   git push
+   ```
+
+4. 开发完毕，要合并到master分支时
+
+   * 如果开发周期较长或提交记录较多，最好选择走 PR 形式
+
+     > PR 会将需要合并到 master 的分支上的所有提交合并为一个提交记录合并到 master 分支上，这样如果合并分支代码存在问题的话方便回退
+
+     参考：[发起 PR （合并请求）](#需求22)
+
+   * 如果改动不多或提交记录就一个，并且有 master 分支更改权限，可直接使用命令合并
+
+     ```nginx
+     # 从开发分支切换到 master 分支
+     git checkout master
+     
+     # 拉取 master 分支最新代码
+     git pull
+     
+     # 合并开发分支代码到 master 分支
+     git merge newBusiness
+     
+     # 如果不存在冲突，可直接提交到远程，则合并完毕
+     git push
+     
+     # 如果存在冲突，需要处理完冲突，再次进行提交，合并完毕
+     git commit -am "解决冲突"
+     git push
+     ```
+
+<br />
+
+<br />
+
+## <a id="扩展">扩展</a>
 
 #### 知识1
 
