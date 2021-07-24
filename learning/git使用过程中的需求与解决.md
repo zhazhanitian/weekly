@@ -783,6 +783,79 @@ From http://10.27.167.84:8666/digital_reform/digital_mobile
 
 <br />
 
+### 问题4
+
+#### 描述
+
+在进行开源项目开发过程中，需要更新源项目到自己fock过来的项目中，git 报错如下
+
+```nginx
+# fetch 报错
+➜  element-plus git:(dev) git fetch element 
+ssh: connect to host github.com port 22: Operation timed out
+fatal: Could not read from remote repository.
+```
+
+#### 原因
+
+端口22不能使用
+
+#### 步骤
+
+1. 端口22为ssh默认端口，怀疑和github服务器有关
+
+   ```nginx
+   # 测试 443 端口是否可以使用
+   ssh -T -p 443 git@ssh.github.com
+   
+   # 过程中输入一次 yes，得到最后一行信息则表示 443 端口可用
+   ➜  element-plus git:(dev) ssh -T -p 443 git@ssh.github.com
+   The authenticity of host '[ssh.github.com]:443 ([18.138.202.180]:443)' can't be established.
+   RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+   Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+   Warning: Permanently added '[ssh.github.com]:443,[18.138.202.180]:443' (RSA) to the list of known hosts.
+   Hi zhazhanitian! You've successfully authenticated, but GitHub does not provide shell access.
+   ```
+
+2. 将修改端口为 443
+
+   ```nginx
+   # 切换到 ssh 目录
+   cd ~/.ssh
+   
+   # 修改ssh配置，编辑 config 文件(没有则新增)
+   vim config
+   
+   # 修改配置信息，将以下信息添加到 config 内容后面
+   Host github.com /* 服务器地址为github地址 */
+   User guimashusheng@126.com /* github上的注册邮箱为用户账号 只需要改这里 */
+   Hostname ssh.github.com /* 服务器地址为github地址 */
+   PreferredAuthentications publickey /* 采用公匙 */
+   IdentityFile ~/.ssh/id_rsa /* 公匙文件路径 */
+   Port 443 /* 修改端口为443 */
+   ```
+
+3. 再次尝试
+
+   ```nginx
+   # 测试 443 端口
+   ➜  element-plus git:(dev) ssh -T -p 443 git@ssh.github.com
+   Hi zhazhanitian! You've successfully authenticated, but GitHub does not provide shell access.
+   
+   # fetch 内容
+   ➜  element-plus git:(dev) git fetch element               
+   remote: Enumerating objects: 5699, done.
+   remote: Counting objects: 100% (4062/4062), done.
+   remote: Compressing objects: 100% (830/830), done.
+   remote: Total 5699 (delta 3508), reused 3623 (delta 3208), pack-reused 1637
+   Receiving objects: 100% (5699/5699), 9.08 MiB | 2.61 MiB/s, done.
+   Resolving deltas: 100% (4568/4568), completed with 432 local objects.
+   ```
+
+4. 就此解决
+
+<br />
+
 <br />
 
 ## <a id="日常工作操作流程">日常工作操作流程</a>
