@@ -10,6 +10,7 @@
 * [基于UDP协议发起DNS查询.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E5%9F%BA%E4%BA%8EUDP%E5%8D%8F%E8%AE%AE%E5%8F%91%E8%B5%B7DNS%E6%9F%A5%E8%AF%A2.md)
 * [网络总结篇.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E7%BD%91%E7%BB%9C%E6%80%BB%E7%BB%93%E7%AF%87.md)
 * [BFC 布局规则及 CSS 格式化上下文.md](https://github.com/zhazhanitian/weekly/blob/main/learning/BFC%20%E5%B8%83%E5%B1%80%E8%A7%84%E5%88%99%E5%8F%8A%20CSS%20%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87.md)
+* [Vue 3编译效率提升原理](https://github.com/zhazhanitian/weekly/blob/main/learning/Vue%203%E7%BC%96%E8%AF%91%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87%E5%8E%9F%E7%90%86.md)
 * [前端安全_泛洪攻击.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8_%E6%B3%9B%E6%B4%AA%E6%94%BB%E5%87%BB.md)
 * [骨架屏生成方案原理.md](https://github.com/zhazhanitian/weekly/blob/main/learning/骨架屏生成方案原理.md)
 * [Axios的核心功能原理.md](https://github.com/zhazhanitian/weekly/blob/main/learning/Axios的核心功能原理.md)
