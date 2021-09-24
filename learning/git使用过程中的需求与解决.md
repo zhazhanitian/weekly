@@ -858,6 +858,32 @@ fatal: Could not read from remote repository.
 
 <br />
 
+### 问题5
+
+#### 描述
+
+链接远程超时
+
+```nginx
+fatal: unable to access 'https://github.com/zhazhanitian/weekly.git/': LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443
+```
+
+#### 原因
+
+此次是因为代理了的原因导致，取消代理就OK
+
+#### 解决方案
+
+```nginx
+git config --global --unset http.proxy
+
+git config --global --unset https.proxy
+```
+
+结果：成功
+
+<br />
+
 <br />
 
 ## <a id="日常工作操作流程">日常工作操作流程</a>
