@@ -247,8 +247,7 @@ const reg = /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/;
 const match = reg.exec('2021-02-23');
 ```
 
-![image](https://user-images.githubusercontent.com/31462942/137841147-f3466129-c651-4e8c-a1be-bf624a0ffd5a.png)
-
+<img src="https://user-images.githubusercontent.com/31462942/137841147-f3466129-c651-4e8c-a1be-bf624a0ffd5a.png" alt="image" style="float: left;" />
 
 <br />
 
@@ -386,7 +385,7 @@ Promise.allSettled(promiseList)
 });
 ```
 
-![image](https://user-images.githubusercontent.com/31462942/137853361-1d4dccd0-2417-475b-91e6-8b0eee509203.png)
+<img src="https://user-images.githubusercontent.com/31462942/137853361-1d4dccd0-2417-475b-91e6-8b0eee509203.png" alt="image" style="float: left;" />
 
 <br />
 
@@ -442,7 +441,7 @@ Promise.any(promiseList)
 });
 ```
 
-![image](https://user-images.githubusercontent.com/31462942/137853827-72df0a9b-816c-462a-bf92-ff85f71e3c3e.png)
+<img src="https://user-images.githubusercontent.com/31462942/137853827-72df0a9b-816c-462a-bf92-ff85f71e3c3e.png" alt="image" style="float:left;" />
 
 <br />
 
@@ -484,5 +483,5 @@ const money = 1000000000;
 1_000_000_000 === 1000000000; // true
 ```
 
-![image](https://user-images.githubusercontent.com/31462942/137854026-14d3d031-7407-48d3-97da-01c86bd27c8c.png)
+<img src="https://user-images.githubusercontent.com/31462942/137854026-14d3d031-7407-48d3-97da-01c86bd27c8c.png" alt="image" style="float:left;" />
 

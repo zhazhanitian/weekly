@@ -1,5 +1,6 @@
 # weekly
 
+* [JS语法 ES* 新特性.md](https://github.com/zhazhanitian/weekly/blob/main/learning/JS%E8%AF%AD%E6%B3%95%20ES*%20%E6%96%B0%E7%89%B9%E6%80%A7.md)
 * [JavaScript 循环遍历方法汇总.md](https://github.com/zhazhanitian/weekly/blob/main/learning/JavaScript%20%E5%BE%AA%E7%8E%AF%E9%81%8D%E5%8E%86%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB.md)
 * [WebSocket 基础、应用、抓包.md](https://github.com/zhazhanitian/weekly/blob/main/learning/WebSocket%20%E5%9F%BA%E7%A1%80%E3%80%81%E5%BA%94%E7%94%A8%E3%80%81%E6%8A%93%E5%8C%85.md)
 * [前端小技巧.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E5%89%8D%E7%AB%AF%E5%B0%8F%E6%8A%80%E5%B7%A7.md)
