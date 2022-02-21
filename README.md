@@ -1,7 +1,8 @@
 # weekly
 
+* [如何运行前端dist包.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C%E5%89%8D%E7%AB%AFdist%E5%8C%85.md)
 * [移动端最佳适配解决方案](https://github.com/zhazhanitian/weekly/blob/main/learning/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%9C%80%E4%BD%B3%E9%80%82%E9%85%8D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.md)
-* [CSS Grid 网格布局](https://ripe-burglar-705.notion.site/CSS-Grid-8e68795870fa4acfbf0725c3404114fa)
+* [CSS Grid 网格布局.md](https://ripe-burglar-705.notion.site/CSS-Grid-8e68795870fa4acfbf0725c3404114fa)
 * [Flex 布局](https://github.com/zhazhanitian/weekly/blob/main/learning/Flex%20%E5%B8%83%E5%B1%80.md)
 * [JS语法 ES* 新特性.md](https://github.com/zhazhanitian/weekly/blob/main/learning/JS%E8%AF%AD%E6%B3%95%20ES*%20%E6%96%B0%E7%89%B9%E6%80%A7.md)
 * [JavaScript 循环遍历方法汇总.md](https://github.com/zhazhanitian/weekly/blob/main/learning/JavaScript%20%E5%BE%AA%E7%8E%AF%E9%81%8D%E5%8E%86%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB.md)
