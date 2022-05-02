@@ -862,7 +862,7 @@ fatal: Could not read from remote repository.
 
 #### 描述
 
-链接远程超时
+链接远程超时 443
 
 ```nginx
 fatal: unable to access 'https://github.com/zhazhanitian/weekly.git/': LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443
@@ -870,13 +870,19 @@ fatal: unable to access 'https://github.com/zhazhanitian/weekly.git/': LibreSSL 
 
 #### 原因
 
-此次是因为代理了的原因导致，取消代理就OK
+访问超时
 
 #### 解决方案
 
-```nginx
-git config --global --unset http.proxy
+使用代理工具，如：ByWave，然后设置 terminal 代理
 
+```nginx
+// 设置代理，这里的10080是代理工具的代理端口，可以在代理工具里面查看到
+git config --global https.proxy 127.0.0.1:10080
+git config --global http.proxy 127.0.0.1:10080
+
+// 取消代理
+git config --global --unset http.proxy
 git config --global --unset https.proxy
 ```
 
