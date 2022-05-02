@@ -1,5 +1,6 @@
 # weekly
 
+* [阿里云服务器项目部署.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2.md)
 * [console 专场.md](https://github.com/zhazhanitian/weekly/blob/main/learning/console%20%E4%B8%93%E5%9C%BA.md)
 * [如何运行前端dist包.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C%E5%89%8D%E7%AB%AFdist%E5%8C%85.md)
 * [移动端最佳适配解决方案.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%9C%80%E4%BD%B3%E9%80%82%E9%85%8D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.md)
