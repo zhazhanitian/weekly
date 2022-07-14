@@ -1,5 +1,6 @@
 # weekly
 
+* [如何在一级域名下开二级域名部署项目](https://github.com/zhazhanitian/weekly/edit/main/learning/%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%80%E7%BA%A7%E5%9F%9F%E5%90%8D%E4%B8%8B%E5%BC%80%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE.md)
 * [如何部署自己的合约](https://github.com/zhazhanitian/weekly/blob/main/learning/%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2%E8%87%AA%E5%B7%B1%E7%9A%84%E5%90%88%E7%BA%A6.md)
 * [阿里云服务器项目部署.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2.md)
 * [console 专场.md](https://github.com/zhazhanitian/weekly/blob/main/learning/console%20%E4%B8%93%E5%9C%BA.md)
