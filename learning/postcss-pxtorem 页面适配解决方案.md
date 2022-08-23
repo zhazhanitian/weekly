@@ -84,17 +84,7 @@ import './rem.js'
 
 #### 验证效果
 
-
-
-
-
-
-
-
-
-
-
-
+<img src="https://user-images.githubusercontent.com/31462942/186060353-13cfa437-930f-43c3-aed5-8c72cfa1e06d.png" style="float: left" />
 
 
 
