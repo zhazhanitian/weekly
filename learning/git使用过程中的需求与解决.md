@@ -689,6 +689,33 @@ git remote -v
 
 当然发起的合并申请可能会存在冲突代码，这时需要先关闭本次合并申请，将 master 分支代码合并到自己的开发分支后再次发起 PR
 
+
+
+<br >
+
+### 需求23
+
+#### 描述
+
+​	解决每次都需要输入密码问题、配置全局用户名和邮箱
+
+#### 步骤
+
+​    进入到项目根目录，输入如下指令：
+
+```js
+// 终端输入, 如果自动打开浏览器授权则直接授权，否则输入账号密码授权
+git config --global credential.helper store
+
+// 理论上通过上面授权就可以在全局配置用户名和邮箱，但是如果没有，那可以进行手动配置
+git config --global user.name "你的账号名称"
+git config --global user.email "你的账号邮箱"
+
+// 查看用户名和邮箱
+git config --global user.name
+git config --global user.email
+```
+
 <br />
 
 <br />
