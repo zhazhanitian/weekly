@@ -1,5 +1,8 @@
 # weekly
 
+* [Vue2和Vue3中虚拟DOM和Diff算法深度解析.md](https://github.com/zhazhanitian/weekly/blob/main/learning/Vue2%E5%92%8CVue3%E4%B8%AD%E8%99%9A%E6%8B%9FDOM%E5%92%8CDiff%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90.md)
+* [深入剖析Vite：性能优异的现代化前端开发工具.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90Vite%EF%BC%9A%E6%80%A7%E8%83%BD%E4%BC%98%E5%BC%82%E7%9A%84%E7%8E%B0%E4%BB%A3%E5%8C%96%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7.md)
+* [深入理解 Abstract Syntax Tree（AST）.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%20Abstract%20Syntax%20Tree%EF%BC%88AST%EF%BC%89.md)
 * [移动端网页禁止缩放、横竖屏切换.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5%E7%A6%81%E6%AD%A2%E7%BC%A9%E6%94%BE%E3%80%81%E6%A8%AA%E7%AB%96%E5%B1%8F%E5%88%87%E6%8D%A2.md)
 * [移动端H5页面vh高度适配解决方案.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E7%A7%BB%E5%8A%A8%E7%AB%AFH5%E9%A1%B5%E9%9D%A2vh%E9%AB%98%E5%BA%A6%E9%80%82%E9%85%8D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.md)
 * [postcss-pxtorem 页面适配解决方案.md](https://github.com/zhazhanitian/weekly/blob/main/learning/postcss-pxtorem%20%E9%A1%B5%E9%9D%A2%E9%80%82%E9%85%8D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.md)
