@@ -1,5 +1,7 @@
 # weekly
 
+* [requestAnimationFrame%20优化动画渲染的利器.md](https://github.com/zhazhanitian/weekly/blob/main/learning/requestAnimationFrame%20%E4%BC%98%E5%8C%96%E5%8A%A8%E7%94%BB%E6%B8%B2%E6%9F%93%E7%9A%84%E5%88%A9%E5%99%A8.md)
+* [浏览器中优化动画的技巧与实践.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E4%BC%98%E5%8C%96%E5%8A%A8%E7%94%BB%E7%9A%84%E6%8A%80%E5%B7%A7%E4%B8%8E%E5%AE%9E%E8%B7%B5.md)
 * [Vue2和Vue3中虚拟DOM和Diff算法深度解析.md](https://github.com/zhazhanitian/weekly/blob/main/learning/Vue2%E5%92%8CVue3%E4%B8%AD%E8%99%9A%E6%8B%9FDOM%E5%92%8CDiff%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90.md)
 * [深入剖析Vite：性能优异的现代化前端开发工具.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90Vite%EF%BC%9A%E6%80%A7%E8%83%BD%E4%BC%98%E5%BC%82%E7%9A%84%E7%8E%B0%E4%BB%A3%E5%8C%96%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7.md)
 * [深入理解 Abstract Syntax Tree（AST）.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%20Abstract%20Syntax%20Tree%EF%BC%88AST%EF%BC%89.md)
