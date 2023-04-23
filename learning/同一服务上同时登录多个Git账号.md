@@ -10,8 +10,6 @@
 
 注意：我操作的背景是我已有一个GitHub账号，现在需要再登录另外一个GitHub账号操作另外的仓库代码
 
-<br />
-
 #### 生成新key
 
 注意： 在生成多个SSH key的时候一定要在`~/.ssh`目录下进行，否则生成的SSH key不会在`~/.ssh`目录下，所以以下有操作都是在`~/.ssh`目录下进行的
@@ -100,6 +98,16 @@ cat ~/.ssh/zook_id_rsa.pub
 ssh -T git@zook.github.com
 ```
 
+执行测试可能会报错如下
+
+```nginx
+kex_exchange_identification: Connection closed by remote host
+```
+
+这是因为host解析失败
+
+解决方案也很简单，在ssh文件夹下面有个known_hosts文件，直接把里面的记录清空即可，然后再次尝试连接
+
 执行结果如下表示成功
 
 <img width="754" style="float: left;" alt="image" src="https://user-images.githubusercontent.com/31462942/233816821-3d28b29f-1bde-4a15-ae5a-1bc422a845e6.png">
@@ -132,4 +140,3 @@ git config user.email "yshi****1@gmail.com"
 然后随便修改一点代码测试提交，提交成功那就至此结束
 
 <img width="500" style="float: left;" alt="image" src="https://user-images.githubusercontent.com/31462942/233817178-0cdaddaa-9f8c-4003-be5c-af6c717b4913.png">
-
