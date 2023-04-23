@@ -1,5 +1,6 @@
 # weekly
 
+* [同一服务上同时登录多个Git账号.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E5%90%8C%E4%B8%80%E6%9C%8D%E5%8A%A1%E4%B8%8A%E5%90%8C%E6%97%B6%E7%99%BB%E5%BD%95%E5%A4%9A%E4%B8%AAGit%E8%B4%A6%E5%8F%B7.md)
 * [requestAnimationFrame%20优化动画渲染的利器.md](https://github.com/zhazhanitian/weekly/blob/main/learning/requestAnimationFrame%20%E4%BC%98%E5%8C%96%E5%8A%A8%E7%94%BB%E6%B8%B2%E6%9F%93%E7%9A%84%E5%88%A9%E5%99%A8.md)
 * [浏览器中优化动画的技巧与实践.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E4%BC%98%E5%8C%96%E5%8A%A8%E7%94%BB%E7%9A%84%E6%8A%80%E5%B7%A7%E4%B8%8E%E5%AE%9E%E8%B7%B5.md)
 * [Vue2和Vue3中虚拟DOM和Diff算法深度解析.md](https://github.com/zhazhanitian/weekly/blob/main/learning/Vue2%E5%92%8CVue3%E4%B8%AD%E8%99%9A%E6%8B%9FDOM%E5%92%8CDiff%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90.md)
