@@ -1,5 +1,7 @@
 # weekly
 
+* [vue中data和method为什么可以直接通过this访问.md](https://github.com/zhazhanitian/weekly/blob/main/learning/vue%E4%B8%ADdata%E5%92%8Cmethod%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E9%80%9A%E8%BF%87this%E8%AE%BF%E9%97%AE.md)
+* [对比backdrop-filter和filter属性差异与使用场景.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E5%AF%B9%E6%AF%94backdrop-filter%E5%92%8Cfilter%E5%B1%9E%E6%80%A7%E5%B7%AE%E5%BC%82%E4%B8%8E%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF.md)
 * [同一服务上同时登录多个Git账号.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E5%90%8C%E4%B8%80%E6%9C%8D%E5%8A%A1%E4%B8%8A%E5%90%8C%E6%97%B6%E7%99%BB%E5%BD%95%E5%A4%9A%E4%B8%AAGit%E8%B4%A6%E5%8F%B7.md)
 * [requestAnimationFrame%20优化动画渲染的利器.md](https://github.com/zhazhanitian/weekly/blob/main/learning/requestAnimationFrame%20%E4%BC%98%E5%8C%96%E5%8A%A8%E7%94%BB%E6%B8%B2%E6%9F%93%E7%9A%84%E5%88%A9%E5%99%A8.md)
 * [浏览器中优化动画的技巧与实践.md](https://github.com/zhazhanitian/weekly/blob/main/learning/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E4%BC%98%E5%8C%96%E5%8A%A8%E7%94%BB%E7%9A%84%E6%8A%80%E5%B7%A7%E4%B8%8E%E5%AE%9E%E8%B7%B5.md)
